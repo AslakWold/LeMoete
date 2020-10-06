@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "s331389-s331378-mappe2-lemoete"
