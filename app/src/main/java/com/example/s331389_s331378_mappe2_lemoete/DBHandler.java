@@ -2,13 +2,16 @@ package com.example.s331389_s331378_mappe2_lemoete;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -63,6 +66,27 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
                 new String[] {brukernavn});
         db.close();
+    }
+
+    public List<Kontakt> hentAlleKontakter(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Kontakt> kontaktListe = new ArrayList<Kontakt>();
+        String selectQue = "SELECT * FROM " + TABLE_KONTAKTER;
+        Cursor cursor = db.rawQuery(selectQue, null);
+
+        if(cursor.moveToFirst()){
+            Kontakt kontakt = new Kontakt();
+            kontakt.set_ID(cursor.getLong(0));
+            kontakt.setBrukernavn(cursor.getString(1));
+            kontakt.setNavn(cursor.getString(2));
+            kontakt.setTelefon(cursor.getString(3));
+            kontaktListe.add(kontakt);
+        }while(cursor.moveToFirst());
+        cursor.close();
+        db.close();
+
+        return kontaktListe;
+
     }
 
     //Tabeller

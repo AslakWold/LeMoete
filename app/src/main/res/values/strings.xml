@@ -6,4 +6,16 @@
     <string name="kontakter">Kontakter</string>
     <string name="møter">Møte-oversikt</string>
 
+    <!-- activity kontakter -->
+    <string name="legg_til">Legg til</string>
+    <string name="endre">Endre</string>
+    <string name="slett">Slett</string>
+
+    <string name="id_kontakt">id</string>
+    <string name="navn">navn</string>
+    <string name="brukernavn">brukernavn</string>
+    <string name="telefonnummer">tlf</string>
+
+
+
 </resources>
