@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">s331389-s331378-mappe2-lemoete</string>
+
+    <!-- Hovedskjerm -->
+    <string name="opprett_møte">Opprett Møte</string>
+    <string name="kontakter">Kontakter</string>
+    <string name="møter">Møte-oversikt</string>
+
 </resources>
