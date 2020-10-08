@@ -38,13 +38,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String LAG_TABLE_KONTAKTER = "CREATE TABLE " + TABLE_KONTAKTER
-                + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_USER_NAME + " TEXT NOT NULL UNIQUE,"
-                + KEY_NAME + " TEXT,"
-                + KEY_PH_NO + " TEXT" + ")";
-        Log.d("SQL", LAG_TABLE_KONTAKTER);
-        db.execSQL(LAG_TABLE_KONTAKTER);
+        createTableKontakter(db);
+
     }
 
     @Override
@@ -62,4 +57,26 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_KONTAKTER, null, values);
         db.close();
     }
+
+    //Tabeller
+    public void createTableKontakter(SQLiteDatabase db) {
+        String LAG_TABLE_KONTAKTER = "CREATE TABLE " + TABLE_KONTAKTER
+                + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+                + KEY_USER_NAME + " TEXT NOT NULL UNIQUE,"
+                + KEY_NAME + " TEXT,"
+                + KEY_PH_NO + " TEXT" + ")";
+        Log.d("SQL", LAG_TABLE_KONTAKTER);
+        db.execSQL(LAG_TABLE_KONTAKTER);
+    }
+
+    public void createTableMøter(SQLiteDatabase db) {
+
+    }
+
+    public void createTableMøteDeltagelse(SQLiteDatabase db) {
+
+    }
+
+    //Tabeller slutt
+
 } //DBHandler slutt
