@@ -11,11 +11,11 @@ import java.util.Date;
 public class DBHandler extends SQLiteOpenHelper {
 
     static String TABLE_KONTAKTER = "Kontakter";
-    static String KEY_ID = "_ID"; //Eller skal vi bruke et username?
+    static String USER_NAME = "brukernavn"; //Eller skal vi bruke et username?
     static String KEY_NAME = "navn";
     static String KEY_PH_NO = "telefon";
 
-    static String TABLE_MØTER = "Møter";
+   /* static String TABLE_MØTER = "Møter";
     static String STED = "sted";
     static String TYPE_MØTE = "type";
     //tidspunkt
@@ -23,7 +23,7 @@ public class DBHandler extends SQLiteOpenHelper {
     //Oversikt over kontakter i møte
 
     //Møtedeltagelse
-    //ikke sikker på hvilke felter vi trenger.
+    //ikke sikker på hvilke felter vi trenger. */
 
     static int DATABASE_VERSION = 1;
     static String DATABASE_NAME = "MøteDatabase";
