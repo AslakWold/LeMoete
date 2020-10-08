@@ -58,6 +58,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void slettKontakt(String brukernavn) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
+                new String[] {brukernavn});
+        db.close();
+    }
+
     //Tabeller
     public void createTableKontakter(SQLiteDatabase db) {
         String LAG_TABLE_KONTAKTER = "CREATE TABLE " + TABLE_KONTAKTER
