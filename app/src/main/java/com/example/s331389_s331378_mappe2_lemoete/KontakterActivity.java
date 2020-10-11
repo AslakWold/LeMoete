@@ -26,7 +26,7 @@ public class KontakterActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kontakter);
-        lv = (ListView) findViewById(R.id.kontakterList);
+        //lv = (ListView) findViewById(R.id.kontakterList);
         ListKontakter();
     }
 
