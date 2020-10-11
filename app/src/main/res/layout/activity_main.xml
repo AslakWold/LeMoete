@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:layout_gravity="center">
 
 
     <Button
-        android:onClick="startMøteOversikt"
         android:id="@+id/møteOversikt"
+
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="180dp"
         android:text="@string/møter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:onClick="startOpprettMøte"
         android:id="@+id/opprettMøte"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -30,11 +30,11 @@
         app:layout_constraintTop_toBottomOf="@+id/møteOversikt" />
 
     <Button
-        android:onClick="startKontakter"
-        android:id="@+id/kontakter"
+        android:id="@+id/kontaker"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/kontakter"
+        android:onClick="btnKontakter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/opprettMøte" />

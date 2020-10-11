@@ -20,6 +20,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_USER_NAME = "brukernavn";
     static String KEY_NAME = "navn";
     static String KEY_PH_NO = "telefon";
+    long result;
 
    /* static String TABLE_MØTER = "Møter";
     static String STED = "sted";
@@ -51,24 +52,44 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+    //Legger til data
+
     public void leggTilKontakt(Kontakt kontakt) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USER_NAME, kontakt.getBrukernavn());
         values.put(KEY_NAME, kontakt.getNavn());
         values.put(KEY_PH_NO, kontakt.getTelefon());
-        db.insert(TABLE_KONTAKTER, null, values);
+        result = db.insert(TABLE_KONTAKTER, null, values);
         db.close();
     }
 
+
+    //Legger til data - slutt
+
+    //Sletter data
+
     public void slettKontakt(String brukernavn) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
+        result = db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
                 new String[] {brukernavn});
         db.close();
     }
 
-    public List<Kontakt> hentAlleKontakter(){
+
+    //Sletter data - slutt
+
+    //Returnerer data
+
+    public Cursor getKontakter() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT brukernavn FROM " + TABLE_KONTAKTER;
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+    /*public List<Kontakt> hentAlleKontakter(){
         SQLiteDatabase db = this.getReadableDatabase();
         List<Kontakt> kontaktListe = new ArrayList<Kontakt>();
         String selectQue = "SELECT * FROM " + TABLE_KONTAKTER;
@@ -87,7 +108,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return kontaktListe;
 
-    }
+    } */
+
+    //Returnerer data - slutt
 
     //Tabeller
     public void createTableKontakter(SQLiteDatabase db) {
@@ -109,5 +132,19 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //Tabeller slutt
+
+    //Metoder som returner
+
+    //Hjelpemetoder
+
+    /* public boolean dataLagtTil(long result) {
+        if(result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    } */
+
+    //Hjelpemetoder slutt
 
 } //DBHandler slutt
