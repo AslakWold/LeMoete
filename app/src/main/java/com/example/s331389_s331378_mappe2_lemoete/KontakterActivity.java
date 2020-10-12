@@ -32,13 +32,13 @@ public class KontakterActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kontakter);
-        navnInn = (EditText) findViewById(R.id.editTextName);
+        /* navnInn = (EditText) findViewById(R.id.editTextName);
         idInn = (EditText)findViewById(R.id.editTextID);
         telefonInn = (EditText)findViewById(R.id.editTextTelefon);
         brukernavnInn = (EditText)findViewById(R.id.EditTextBrukernavn);
         lv = (ListView) findViewById(R.id.kontakterList);
         //lv = (ListView) findViewById(R.id.kontakterList);
-        ListKontakter();
+        ListKontakter(); */
     }
 
 

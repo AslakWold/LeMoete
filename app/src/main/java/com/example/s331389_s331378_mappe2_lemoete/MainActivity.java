@@ -12,10 +12,12 @@ import android.widget.Toast;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     public DBHandler db;
+    FloatingActionButton leggTilKnapp;
     //Button kontakter, møteOversikt, opprettMøte;
 
     @Override
@@ -23,15 +25,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        leggTilKnapp = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
                 new MøterFragment()).commit();
     }
-
-
-
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
     //Buttons
 
+    public void btnKontaktEditor(View v) {
+        Intent intent = new Intent(this, KontakterActivity.class);
+        startActivity(intent);
+    }
 
     //Buttons slutt
 
