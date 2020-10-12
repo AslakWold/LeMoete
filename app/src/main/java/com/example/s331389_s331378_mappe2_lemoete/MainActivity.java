@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public DBHandler db;
     //Button kontakter, møteOversikt, opprettMøte;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

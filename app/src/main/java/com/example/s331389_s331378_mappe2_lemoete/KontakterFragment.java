@@ -17,7 +17,7 @@ import java.util.List;
 
 public class KontakterFragment extends Fragment {
 
-    DBHandler db = new DBHandler(getActivity());
+    DBHandler db;
     ListView lv;
     @Nullable
     @Override
@@ -33,6 +33,7 @@ public class KontakterFragment extends Fragment {
         //List<Kontakt> kontakter = db.finnAlleKontakter();
        /* List<Kontakt> kontakter = new ArrayList<>();
         ArrayAdapter <Kontakt> utKontakter = new ArrayAdapter<>(this,lv, kontakter);*/
+        db = new DBHandler(getActivity());
         List<Kontakt> kontakter = db.hentAlle("Kontakter");
         ArrayList<String> kontaktString = new ArrayList<>();
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="eksempelnavn">
+        <item>Aslak</item>
+        <item>Jacob</item>
+        <item>Edvard</item>
+        <item>Benjamin</item>
+    </string-array>
+</resources>
