@@ -22,7 +22,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="#ffffff"
+        app:backgroundTint="#ECE8E8"
         app:layout_constraintBottom_toBottomOf="@+id/liste_møter"
         app:layout_constraintEnd_toEndOf="@+id/liste_møter"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />

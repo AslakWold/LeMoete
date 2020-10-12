@@ -23,12 +23,12 @@
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_navigation"
-        android:background="?android:attr/windowBackground"
+        android:background="#ECE8E8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frame_container"/>
+        app:layout_constraintTop_toBottomOf="@id/frame_container"
+        app:menu="@menu/bottom_navigation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

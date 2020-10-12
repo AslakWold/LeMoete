@@ -18,7 +18,6 @@ import java.util.List;
 public class KontakterActivity extends AppCompatActivity {
 
     EditText navnInn;
-    EditText idInn;
     EditText telefonInn;
     EditText brukernavnInn;
 
@@ -32,11 +31,10 @@ public class KontakterActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kontakter);
-        /* navnInn = (EditText) findViewById(R.id.editTextName);
-        idInn = (EditText)findViewById(R.id.editTextID);
-        telefonInn = (EditText)findViewById(R.id.editTextTelefon);
-        brukernavnInn = (EditText)findViewById(R.id.EditTextBrukernavn);
-        lv = (ListView) findViewById(R.id.kontakterList);
+        navnInn = (EditText) findViewById(R.id.text_navn);
+        telefonInn = (EditText)findViewById(R.id.text_tlf);
+        brukernavnInn = (EditText)findViewById(R.id.text_brukernavn);
+        /*lv = (ListView) findViewById(R.id.kontakterList);
         //lv = (ListView) findViewById(R.id.kontakterList);
         ListKontakter(); */
     }
@@ -44,8 +42,9 @@ public class KontakterActivity extends AppCompatActivity {
 
     //Legge til kode fra forelesning her
     public void btnLeggTil(View v){
-        Kontakt nyKontakt = new Kontakt(Long.parseLong(idInn.getText().toString()),
-                brukernavnInn.getText().toString(),navnInn.getText().toString(),telefonInn.getText().toString());
+        Kontakt nyKontakt = new Kontakt(brukernavnInn.getText().toString(),
+                navnInn.getText().toString(),
+                telefonInn.getText().toString());
 
         db.leggTilKontakt(nyKontakt);
         recreate();
@@ -56,16 +55,14 @@ public class KontakterActivity extends AppCompatActivity {
         kontakt.setNavn(navnInn.getText().toString());
         kontakt.setTelefon(telefonInn.getText().toString());
         kontakt.setBrukernavn(brukernavnInn.getText().toString());
-        kontakt.set_ID(Long.parseLong(idInn.getText().toString()));
 
         db.oppdaterKontakt(kontakt);
         recreate();
 
     }
     public void btnSlett(View v){
-        Long kontaktID = Long.parseLong(idInn.getText().toString());
-        //String kontaktBrukernavn = brukernavnInn.getText().toString();
-        db.slettKontakt(kontaktID);
+        String brukernavn = brukernavnInn.getText().toString();
+        db.slettKontakt(brukernavn);
         recreate();
     }
 

@@ -14,9 +14,18 @@
     <string name="slett">Slett</string>
 
     <string name="id_kontakt">id</string>
-    <string name="navn">navn</string>
-    <string name="brukernavn">brukernavn</string>
-    <string name="telefonnummer">tlf</string>
+    <string name="navn">Navn</string>
+    <string name="brukernavn">Brukernavn</string>
+    <string name="telefonnummer">Tlf</string>
+
+    <string name="ny_kontakt">Ny kontakt</string>
+
+    <!-- Generellt -->
+    <string name="avslutt">Avslutt?</string>
+    <string name="ja">Ja</string>
+    <string name="fortsett">Fortsett</string>
+
+
 
 
 

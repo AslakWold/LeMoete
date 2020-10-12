@@ -5,109 +5,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+   <androidx.appcompat.widget.Toolbar
+       android:id="@+id/kontakter_toolbar"
+       app:title="@string/ny_kontakt"
+       app:titleMarginStart="60dp"
+       app:titleTextColor="@color/colorPrimary"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="#ECE8E8"
+       android:minHeight="?attr/actionBarSize"
+       android:theme="?attr/actionBarTheme"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 
-
- <!--
-   <com.google.android.material.bottomnavigation.BottomNavigationView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ListView
-        android:id="@+id/kontakterList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/navn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextID" />
-
-    <EditText
-        android:id="@+id/EditTextBrukernavn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:inputType="textPhonetic"
-        android:text="@string/brukernavn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextName" />
-
-    <EditText
-        android:id="@+id/editTextTelefon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/telefonnummer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/EditTextBrukernavn" />
-
-    <EditText
-        android:id="@+id/editTextID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="90dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/id_kontakt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:onClick="btnLeggTil"
-        android:id="@+id/btnLeggTil"
+    <ImageButton
+        android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/legg_til"
+        android:background="#ECE8E8"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/kontakter_toolbar"
+        app:layout_constraintStart_toStartOf="@id/kontakter_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/kontakter_toolbar"
+        app:srcCompat="@drawable/ic_baseline_clear_24" />
+
+    <ImageButton
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="#ECE8E8"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/kontakter_toolbar"
+        app:layout_constraintEnd_toEndOf="@id/kontakter_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/kontakter_toolbar"
+        app:srcCompat="@drawable/ic_baseline_done_24" />
+
+    <EditText
+        android:id="@+id/text_brukernavn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/brukernavn"
+        app:layout_constraintBottom_toTopOf="@id/text_navn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTelefon" />
+        app:layout_constraintTop_toBottomOf="@+id/kontakter_toolbar" />
 
-    <Button
-        android:onClick="btnEndre"
-        android:id="@+id/btnEndre"
+    <ImageView
+        android:id="@+id/brukernavn_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/endre"
-        app:layout_constraintStart_toEndOf="@+id/btnLeggTil"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTelefon" />
+        app:layout_constraintBottom_toTopOf="@+id/text_navn"
+        app:layout_constraintEnd_toStartOf="@+id/text_brukernavn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kontakter_toolbar"
+        app:srcCompat="@drawable/ic_baseline_face_24" />
 
-    <Button
-        android:onClick="btnSlett"
-        android:id="@+id/btnSlett"
+    <EditText
+        android:id="@+id/text_navn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/slett"
-        app:layout_constraintStart_toEndOf="@+id/btnEndre"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTelefon" />
-        -->
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/navn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_tlf"
+        app:layout_constraintTop_toBottomOf="@+id/text_brukernavn" />
 
+    <ImageView
+        android:id="@+id/navn_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/text_tlf"
+        app:layout_constraintEnd_toStartOf="@+id/text_navn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_brukernavn"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <EditText
+        android:id="@+id/text_tlf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        android:text="@string/telefonnummer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_navn" />
+
+    <ImageView
+        android:id="@+id/phone_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_tlf"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_navn"
+        app:srcCompat="@drawable/ic_baseline_phone_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
