@@ -70,15 +70,33 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //Sletter data
 
-    public void slettKontakt(String brukernavn) {
+    public void slettKontakt(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        result = db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
-                new String[] {brukernavn});
+        result = db.delete(TABLE_KONTAKTER, KEY_ID + " =? ",
+                new String[] {Long.toString(id)});
         db.close();
     }
 
 
     //Sletter data - slutt
+
+
+
+    //Oppdaterer databser -sTart
+
+    public int oppdaterKontakt(Kontakt kontakt){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, kontakt.getNavn());
+        values.put(KEY_USER_NAME, kontakt.getBrukernavn());
+        values.put(KEY_PH_NO,kontakt.getTelefon());
+
+        int endret = db.update(TABLE_KONTAKTER, values, KEY_ID + "= ?",new String[]{String.valueOf(kontakt.get_ID())});
+
+        db.close();
+        return endret;
+    }
+    //Oppdater databaser -slutt
 
     //Returnerer data
 
@@ -89,26 +107,27 @@ public class DBHandler extends SQLiteOpenHelper {
         return data;
     }
 
-    /*public List<Kontakt> hentAlleKontakter(){
+    public List<Kontakt> hentAlle(String TABLE) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Kontakt> kontaktListe = new ArrayList<Kontakt>();
-        String selectQue = "SELECT * FROM " + TABLE_KONTAKTER;
+        String selectQue = "SELECT * FROM " + TABLE;
         Cursor cursor = db.rawQuery(selectQue, null);
 
-        if(cursor.moveToFirst()){
-            Kontakt kontakt = new Kontakt();
-            kontakt.set_ID(cursor.getLong(0));
-            kontakt.setBrukernavn(cursor.getString(1));
-            kontakt.setNavn(cursor.getString(2));
-            kontakt.setTelefon(cursor.getString(3));
-            kontaktListe.add(kontakt);
-        }while(cursor.moveToFirst());
+        if (cursor.moveToFirst()) {
+            do {
+                Kontakt kontakt = new Kontakt();
+                kontakt.set_ID(cursor.getLong(0));
+                kontakt.setBrukernavn(cursor.getString(1));
+                kontakt.setNavn(cursor.getString(2));
+                kontakt.setTelefon(cursor.getString(3));
+                kontaktListe.add(kontakt);
+        } while (cursor.moveToNext()) ;
         cursor.close();
         db.close();
-
+    }
         return kontaktListe;
 
-    } */
+    }
 
     //Returnerer data - slutt
 
