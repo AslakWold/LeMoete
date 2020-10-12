@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/møteoversikt"
+        android:icon="@drawable/ic_baseline_meeting_room_24"
+        android:title="@string/møteoversikt"/>
+    <item
+        android:id="@+id/kontakter"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/kontakter"/>
+    <item
+        android:id="@+id/instillinger"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/innstillinger"/>
+
+
+</menu>

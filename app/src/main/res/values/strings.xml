@@ -5,7 +5,8 @@
     <!-- Hovedskjerm -->
     <string name="opprett_møte">Opprett Møte</string>
     <string name="kontakter">Kontakter</string>
-    <string name="møter">Møte-oversikt</string>
+    <string name="møteoversikt">Møteoversikt</string>
+    <string name="innstillinger">Innstillinger</string>
 
     <!-- activity kontakter -->
     <string name="legg_til">Legg til</string>

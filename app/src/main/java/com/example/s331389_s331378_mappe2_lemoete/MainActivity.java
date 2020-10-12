@@ -11,7 +11,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     public DBHandler db;
-    Button kontakter, møteOversikt, opprettMøte;
+    //Button kontakter, møteOversikt, opprettMøte;
 
 
     @Override
@@ -19,18 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        kontakter = (Button) findViewById(R.id.kontaker);
-        møteOversikt = (Button) findViewById(R.id.møteOversikt);
-        opprettMøte = (Button) findViewById(R.id.opprettMøte);
 
         db = new DBHandler(this);
     }
 
     //Buttons
-    public void btnKontakter(View v) {
-        Intent kontaktIntent = new Intent(this, KontakterActivity.class);
-        startActivity(kontaktIntent);
-    }
 
 
     //Buttons slutt

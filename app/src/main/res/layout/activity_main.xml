@@ -5,37 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:layout_gravity="center">
+    tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/møteOversikt"
-
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:text="@string/møter"
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navigation">
 
-    <Button
-        android:id="@+id/opprettMøte"
-        android:layout_width="150dp"
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/opprett_møte"
+        app:menu="@menu/bottom_navigation"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/møteOversikt" />
+        app:layout_constraintTop_toBottomOf="@id/frame_container"/>
 
-    <Button
-        android:id="@+id/kontaker"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="@string/kontakter"
-        android:onClick="btnKontakter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opprettMøte" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
