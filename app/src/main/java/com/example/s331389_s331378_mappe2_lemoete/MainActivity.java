@@ -1,12 +1,17 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 import android.view.View;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,14 +19,44 @@ public class MainActivity extends AppCompatActivity {
     //Button kontakter, møteOversikt, opprettMøte;
 
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BottomNavigationView bottomNav = findViewById(R.id.navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        db = new DBHandler(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
+                new MøterFragment()).commit();
     }
+
+
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+
+                    switch (item.getItemId()) {
+                        case R.id.møteoversikt:
+                            selectedFragment = new MøterFragment();
+                            break;
+                        case R.id.kontakter:
+                            selectedFragment = new KontakterFragment();
+                            break;
+                        case R.id.instillinger:
+                            selectedFragment = new InnstillingerFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
+                            selectedFragment).commit();
+                    return true;
+                }
+            };
+
 
     //Buttons
 
