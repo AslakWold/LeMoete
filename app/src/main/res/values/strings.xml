@@ -21,9 +21,10 @@
     <string name="ny_kontakt">Ny kontakt</string>
 
     <!-- Generellt -->
-    <string name="avslutt">Avslutt?</string>
+    <string name="avslutt">Avslutt</string>
     <string name="ja">Ja</string>
     <string name="fortsett">Fortsett</string>
+    <string name="ikke_avslutt">Ikke avslutt</string>
 
 
 

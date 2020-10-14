@@ -1,5 +1,6 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
@@ -39,7 +41,7 @@ public class KontakterActivity extends AppCompatActivity {
         ListKontakter(); */
     }
 
-
+    //Buttons
     //Legge til kode fra forelesning her
     public void btnLeggTil(View v){
         Kontakt nyKontakt = new Kontakt(brukernavnInn.getText().toString(),
@@ -66,6 +68,12 @@ public class KontakterActivity extends AppCompatActivity {
         recreate();
     }
 
+    public void btnClear(View v) {
+        onBackPressed();
+    }
+
+    //Buttons - slutt
+
     public void ListKontakter(){
         //List<Kontakt> kontakter = db.finnAlleKontakter();
        /* List<Kontakt> kontakter = new ArrayList<>();
@@ -87,5 +95,21 @@ public class KontakterActivity extends AppCompatActivity {
 
     }
 
+    //Hjelpemetoder
 
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Avslutt?")
+                .setMessage("Endringene lagres ikke.")
+                .setPositiveButton(R.string.avslutt, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        KontakterActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton(R.string.ikke_avslutt, null)
+                .show();
+    }
 }
