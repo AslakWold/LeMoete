@@ -15,6 +15,12 @@ public class Kontakt {
         this.telefon = telefon;
     }
 
+    public Kontakt(String brukernavn, String navn, String telefon) {
+        this.brukernavn = brukernavn;
+        this.navn = navn;
+        this.telefon = telefon;
+    }
+
     public Kontakt(long _ID, String brukernavn, String navn, String telefon) {
         this._ID = _ID;
         this.brukernavn = brukernavn;

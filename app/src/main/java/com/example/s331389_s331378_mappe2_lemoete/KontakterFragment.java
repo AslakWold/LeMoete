@@ -29,10 +29,13 @@ public class KontakterFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onResume() {
+        ListKontakter();
+        super.onResume();
+    }
+
     public void ListKontakter(){
-        //List<Kontakt> kontakter = db.finnAlleKontakter();
-       /* List<Kontakt> kontakter = new ArrayList<>();
-        ArrayAdapter <Kontakt> utKontakter = new ArrayAdapter<>(this,lv, kontakter);*/
         db = new DBHandler(getContext());
         List<Kontakt> kontakter = db.hentAlle("Kontakter");
         ArrayList<String> kontaktString = new ArrayList<>();

@@ -70,10 +70,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //Sletter data
 
-    public void slettKontakt(long id) {
+    public void slettKontakt(String brukernavn) {
         SQLiteDatabase db = this.getWritableDatabase();
-        result = db.delete(TABLE_KONTAKTER, KEY_ID + " =? ",
-                new String[] {Long.toString(id)});
+        result = db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
+                new String[] {brukernavn});
         db.close();
     }
 

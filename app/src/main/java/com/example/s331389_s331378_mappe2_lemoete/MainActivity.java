@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 import android.view.View;
 
@@ -18,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     public DBHandler db;
     FloatingActionButton leggTilKnapp;
-    //Button kontakter, møteOversikt, opprettMøte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +60,12 @@ public class MainActivity extends AppCompatActivity {
     //Buttons
 
     public void btnKontaktEditor(View v) {
-        Intent intent = new Intent(this, KontakterActivity.class);
+        Intent intent = new Intent(this, NyKontaktActivity.class);
         startActivity(intent);
     }
 
     //Buttons slutt
 
-
-    public void leggTilKontakt(Kontakt kontakt) {
-        db.leggTilKontakt(kontakt);
-        if(db.result != -1) {
-            toastMelding("Kontakt lagt til");
-        } else {
-            toastMelding("Fikk ikke lagt til kontakt");
-        }
-    }
     //Toast-metode
 
     public void toastMelding(String msg) {
@@ -90,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     public void startOpprettMøte(View v){
     }
     public void startKontakter(View v){
-        Intent i = new Intent(this,KontakterActivity.class);
+        Intent i = new Intent(this, NyKontaktActivity.class);
         startActivity(i);
     }
 }
