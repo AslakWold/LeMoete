@@ -49,7 +49,13 @@ public class KontakterActivity extends AppCompatActivity {
                 telefonInn.getText().toString());
 
         db.leggTilKontakt(nyKontakt);
-        recreate();
+        super.onBackPressed();
+
+        //recreate();
+        /*brukernavnInn.setText("");
+        navnInn.setText("");
+        telefonInn.setText(""); */
+
 
     }
     public void btnEndre(View v){

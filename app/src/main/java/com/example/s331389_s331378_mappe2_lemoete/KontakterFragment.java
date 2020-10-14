@@ -29,6 +29,12 @@ public class KontakterFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onResume() {
+        ListKontakter();
+        super.onResume();
+    }
+
     public void ListKontakter(){
         //List<Kontakt> kontakter = db.finnAlleKontakter();
        /* List<Kontakt> kontakter = new ArrayList<>();

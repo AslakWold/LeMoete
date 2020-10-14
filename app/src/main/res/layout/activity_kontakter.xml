@@ -41,6 +41,7 @@
         android:background="#ECE8E8"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="btnLeggTil"
         app:layout_constraintBottom_toBottomOf="@+id/kontakter_toolbar"
         app:layout_constraintEnd_toEndOf="@id/kontakter_toolbar"
         app:layout_constraintTop_toTopOf="@+id/kontakter_toolbar"
