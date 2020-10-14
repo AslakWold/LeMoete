@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     public DBHandler db;
     FloatingActionButton leggTilKnapp;
-    //Button kontakter, møteOversikt, opprettMøte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,15 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Buttons slutt
 
-
-    public void leggTilKontakt(Kontakt kontakt) {
-        db.leggTilKontakt(kontakt);
-        if(db.result != -1) {
-            toastMelding("Kontakt lagt til");
-        } else {
-            toastMelding("Fikk ikke lagt til kontakt");
-        }
-    }
     //Toast-metode
 
     public void toastMelding(String msg) {
