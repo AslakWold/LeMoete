@@ -15,7 +15,7 @@ public class EndreKontaktActivity extends AppCompatActivity {
     EditText navnInn;
     EditText telefonInn;
     EditText brukernavnInn;
-    DBHandler db;
+    DBHandler db = new DBHandler(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
