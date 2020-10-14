@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,12 +45,19 @@ public class KontakterActivity extends AppCompatActivity {
     //Buttons
     //Legge til kode fra forelesning her
     public void btnLeggTil(View v){
-        Kontakt nyKontakt = new Kontakt(brukernavnInn.getText().toString(),
-                navnInn.getText().toString(),
-                telefonInn.getText().toString());
 
-        db.leggTilKontakt(nyKontakt);
-        super.onBackPressed();
+        if(!brukernavnInn.getText().toString().isEmpty()
+        && !navnInn.getText().toString().isEmpty()
+        && !telefonInn.getText().toString().isEmpty()) {
+            Kontakt nyKontakt = new Kontakt(brukernavnInn.getText().toString(),
+                    navnInn.getText().toString(),
+                    telefonInn.getText().toString());
+
+            db.leggTilKontakt(nyKontakt);
+            super.onBackPressed();
+        } else {
+            toastMelding("Du må fylle inn verdier i alle feltene");
+        }
 
         //recreate();
         /*brukernavnInn.setText("");
@@ -80,31 +88,13 @@ public class KontakterActivity extends AppCompatActivity {
 
     //Buttons - slutt
 
-    public void ListKontakter(){
-        //List<Kontakt> kontakter = db.finnAlleKontakter();
-       /* List<Kontakt> kontakter = new ArrayList<>();
-        ArrayAdapter <Kontakt> utKontakter = new ArrayAdapter<>(this,lv, kontakter);*/
-       List<Kontakt> kontakter = db.hentAlle("Kontakter");
-       ArrayList<String> kontaktString = new ArrayList<>();
-
-       for(Kontakt enKontakt : kontakter){
-           String ut = "";
-           ut+="ID : " + enKontakt.get_ID() + " NAVN : "+enKontakt.getNavn()
-           + " TELEFON : " + enKontakt.getTelefon() + " BRUKERNAVN : " + enKontakt.getBrukernavn();
-           kontaktString.add(ut);
-       }
-
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, kontaktString);
-        lv.setAdapter(adapter);
-
-
-
-    }
-
     //Hjelpemetoder
 
+    public void toastMelding(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 
-    @Override
+    @Override //Lager en alertdialog når vi trykker tilbake fra "Ny kontakt"
     public void onBackPressed() {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Avslutt?")
