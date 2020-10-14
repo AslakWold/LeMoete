@@ -64,11 +64,11 @@ public class NyKontaktActivity extends AppCompatActivity {
         recreate();
 
     }
-    public void btnSlett(View v){
+    /*public void btnSlett(View v){
         String brukernavn = brukernavnInn.getText().toString();
         db.slettKontakt(brukernavn);
         recreate();
-    }
+    }*/
 
     public void btnClear(View v) {
         onBackPressed();

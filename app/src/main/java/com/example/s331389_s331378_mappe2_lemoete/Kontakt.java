@@ -59,4 +59,10 @@ public class Kontakt {
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
+
+    public String toString(){
+        String ut= "Navn : " + navn + "\nBrukernavn : " + brukernavn + "\nTelefon : " + telefon +
+                "\nID : " + _ID;
+        return  ut;
+    }
 }
