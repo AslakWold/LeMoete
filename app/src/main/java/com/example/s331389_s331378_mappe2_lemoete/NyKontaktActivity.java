@@ -58,7 +58,6 @@ public class NyKontaktActivity extends AppCompatActivity {
         Kontakt kontakt = new Kontakt();
         kontakt.setNavn(navnInn.getText().toString());
         kontakt.setTelefon(telefonInn.getText().toString());
-        kontakt.setBrukernavn(brukernavnInn.getText().toString());
 
         db.oppdaterKontakt(kontakt);
         recreate();

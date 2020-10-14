@@ -67,8 +67,8 @@ public class KontakterFragment extends Fragment {
             clickedKontakt = kontakter.get(idValgtKontakt);
 
             //HENT TEKST FRA STRING
-            MenuItem mi1 = menu.add(1,1,1,"rediger");
-            MenuItem mi2 = menu.add(0,0,0,"slett");
+            MenuItem mi1 = menu.add(1,1,1,R.string.endre);
+            MenuItem mi2 = menu.add(0,0,0,R.string.slett);
         }
     }
 

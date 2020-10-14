@@ -84,16 +84,19 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //Oppdaterer databser -sTart
 
-    public int oppdaterKontakt(Kontakt kontakt){
+    public long oppdaterKontakt(Kontakt kontakt){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, kontakt.getNavn());
-        values.put(KEY_USER_NAME, kontakt.getBrukernavn());
         values.put(KEY_PH_NO,kontakt.getTelefon());
+        values.put(KEY_USER_NAME, kontakt.getBrukernavn());
 
-        int endret = db.update(TABLE_KONTAKTER, values, KEY_ID + "= ?",new String[]{String.valueOf(kontakt.get_ID())});
+        long endret = db.update(TABLE_KONTAKTER, values, KEY_USER_NAME + "= ?",new String[]{kontakt.getBrukernavn()});
 
+        //dataLagtTil(endret);
         db.close();
+
+
         return endret;
     }
     //Oppdater databaser -slutt
@@ -156,13 +159,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //Hjelpemetoder
 
-    /* public boolean dataLagtTil(long result) {
+    public boolean dataLagtTil(long result) {
         if(result == -1) {
             return false;
         } else {
             return true;
         }
-    } */
+    }
 
     //Hjelpemetoder slutt
 

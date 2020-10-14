@@ -7,7 +7,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/kontakter_toolbar"
-        app:title="@string/ny_kontakt"
+        app:title="@string/endre_kontakt"
         app:titleMarginStart="60dp"
         app:titleTextColor="@color/colorPrimary"
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
         android:background="#ECE8E8"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="btnLeggTil"
+        android:onClick="btnEndre"
         app:layout_constraintBottom_toBottomOf="@+id/kontakter_toolbar"
         app:layout_constraintEnd_toEndOf="@id/kontakter_toolbar"
         app:layout_constraintTop_toTopOf="@+id/kontakter_toolbar"
