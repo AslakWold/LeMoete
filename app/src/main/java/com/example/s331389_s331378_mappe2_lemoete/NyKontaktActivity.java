@@ -1,24 +1,19 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KontakterActivity extends AppCompatActivity {
+public class NyKontaktActivity extends AppCompatActivity {
 
     EditText navnInn;
     EditText telefonInn;
@@ -58,13 +53,6 @@ public class KontakterActivity extends AppCompatActivity {
         } else {
             toastMelding("Du må fylle inn verdier i alle feltene");
         }
-
-        //recreate();
-        /*brukernavnInn.setText("");
-        navnInn.setText("");
-        telefonInn.setText(""); */
-
-
     }
     public void btnEndre(View v){
         Kontakt kontakt = new Kontakt();
@@ -102,7 +90,7 @@ public class KontakterActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.avslutt, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        KontakterActivity.super.onBackPressed();
+                        NyKontaktActivity.super.onBackPressed();
                     }
                 })
                 .setNegativeButton(R.string.ikke_avslutt, null)

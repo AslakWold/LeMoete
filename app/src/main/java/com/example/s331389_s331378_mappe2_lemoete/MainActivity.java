@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 import android.view.View;
 
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     //Buttons
 
     public void btnKontaktEditor(View v) {
-        Intent intent = new Intent(this, KontakterActivity.class);
+        Intent intent = new Intent(this, NyKontaktActivity.class);
         startActivity(intent);
     }
 
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     public void startOpprettMøte(View v){
     }
     public void startKontakter(View v){
-        Intent i = new Intent(this,KontakterActivity.class);
+        Intent i = new Intent(this, NyKontaktActivity.class);
         startActivity(i);
     }
 }
