@@ -27,6 +27,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_STED = "sted";
     static String KEY_TYPE_MOETE = "type";
     static String KEY_MOETE_ID = "Moete_ID";
+    static String KEY_DATO = "dato";
     static String KEY_TID = "tid";
     //Oversikt over kontakter i møte
 
@@ -35,7 +36,7 @@ public class DBHandler extends SQLiteOpenHelper {
     //Skal ha KEY_USER_NAME og KEY_MOETE_ID
 
 
-    static int DATABASE_VERSION = 5;
+    static int DATABASE_VERSION = 6;
     static String DATABASE_NAME = "MoeteDatabase";
 
     public DBHandler(Context context) {
@@ -155,6 +156,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + "(" + KEY_MOETE_ID + " INTEGER PRIMARY KEY,"
                 + KEY_TYPE_MOETE + " TEXT,"
                 + KEY_STED + " TEXT,"
+                + KEY_DATO + " TEXT,"
                 + KEY_TID + " TEXT" + ")";
         Log.d("SQL", LAG_TABLE_MOETER);
         db.execSQL(LAG_TABLE_MOETER);
