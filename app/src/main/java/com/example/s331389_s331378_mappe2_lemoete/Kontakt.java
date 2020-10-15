@@ -10,10 +10,6 @@ public class Kontakt {
     public Kontakt() {
     }
 
-    public Kontakt(String navn, String telefon) {
-        this.navn = navn;
-        this.telefon = telefon;
-    }
 
     public Kontakt(String brukernavn, String navn, String telefon) {
         this.brukernavn = brukernavn;
