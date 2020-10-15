@@ -1,36 +1,49 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Møte {
-    Date tid;
+    Date dato;
+    Time tid;
     String sted;
     String type;
     int moete_ID;
+    //Tror kanskje vi må ha dato og tid fordi mange funksjoner er gått ut på dato.
 
     public Møte() {
 
     }
 
-    public Møte(Date tid, String sted, String type, int moete_ID) {
-        this.tid = tid;
+    public Møte(Date dato, Time tid, String sted, String type, int moete_ID) {
+        this.dato = dato;
         this.sted = sted;
         this.type = type;
+        this.tid = tid;
         this.moete_ID = moete_ID;
     }
 
-    public Møte(Date tid, String sted, String type){
-        this.tid=tid;
-        this.sted=sted;
+    public Møte(Date dato, Time tid, String sted, String type){
+        this.dato = dato;
+        this.sted= sted;
         this.type = type;
+        this.tid = tid;
     }
 
-    public Date getTid() {
+    public Time getTid() {
         return tid;
     }
 
-    public void setTid(Date tid) {
+    public void setTid(Time tid) {
         this.tid = tid;
+    }
+
+    public Date getDato() {
+        return dato;
+    }
+
+    public void setDato(Date dato) {
+        this.dato = dato;
     }
 
     public String getSted() {
