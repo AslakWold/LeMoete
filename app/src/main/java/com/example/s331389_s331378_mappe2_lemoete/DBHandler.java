@@ -16,17 +16,17 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     static String TABLE_KONTAKTER = "Kontakter";
-    static String KEY_ID = "_ID";
+    static String KEY_KONTAKT_ID = "_ID";
     static String KEY_USER_NAME = "brukernavn";
     static String KEY_NAME = "navn";
     static String KEY_PH_NO = "telefon";
     long result;
 
-   /* static String TABLE_MØTER = "Møter";
-    static String STED = "sted";
-    static String TYPE_MØTE = "type";
-    //tidspunkt
-    //ID-felt
+    static String TABLE_MOETER = "Møter";
+    static String KEY_STED = "sted";
+    static String KEY_TYPE_MOETE = "type";
+    static String KEY_MOETE_ID = "_ID";
+    static String KEY_TID = "tid";
     //Oversikt over kontakter i møte
 
     //Møtedeltagelse
@@ -43,12 +43,14 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         createTableKontakter(db);
+        createTableMøter(db);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_KONTAKTER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOETER);
         onCreate(db);
     }
 
@@ -137,7 +139,7 @@ public class DBHandler extends SQLiteOpenHelper {
     //Tabeller
     public void createTableKontakter(SQLiteDatabase db) {
         String LAG_TABLE_KONTAKTER = "CREATE TABLE " + TABLE_KONTAKTER
-                + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+                + "(" + KEY_KONTAKT_ID + " INTEGER PRIMARY KEY,"
                 + KEY_USER_NAME + " TEXT NOT NULL UNIQUE,"
                 + KEY_NAME + " TEXT,"
                 + KEY_PH_NO + " TEXT" + ")";
@@ -146,8 +148,15 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void createTableMøter(SQLiteDatabase db) {
-
+        String LAG_TABLE_MOETER = "CREATE TABLE " + TABLE_MOETER
+                + "(" + KEY_MOETE_ID + " INTEGER PRIMARY KEY,"
+                + KEY_TYPE_MOETE + " TEXT,"
+                + KEY_STED + " TEXT,"
+                + KEY_TID + " TEXT" + ")";
+        Log.d("SQL", LAG_TABLE_MOETER);
+        db.execSQL(LAG_TABLE_MOETER);
     }
+
 
     public void createTableMøteDeltagelse(SQLiteDatabase db) {
 
