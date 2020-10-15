@@ -16,25 +16,27 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     static String TABLE_KONTAKTER = "Kontakter";
-    static String KEY_KONTAKT_ID = "_ID";
+    static String KEY_KONTAKT_ID = "Kontakt_ID";
     static String KEY_USER_NAME = "brukernavn";
     static String KEY_NAME = "navn";
     static String KEY_PH_NO = "telefon";
     long result;
 
-    static String TABLE_MOETER = "Møter";
+    //Møter
+    static String TABLE_MOETER = "Moeter";
     static String KEY_STED = "sted";
     static String KEY_TYPE_MOETE = "type";
-    static String KEY_MOETE_ID = "_ID";
+    static String KEY_MOETE_ID = "Moete_ID";
     static String KEY_TID = "tid";
     //Oversikt over kontakter i møte
 
     //Møtedeltagelse
-    //ikke sikker på hvilke felter vi trenger. */
-   //Brukernavn og MøteID
+    static String TABLE_MOETEDELTAGELSE = "Moetedeltagelse";
+    //Skal ha KEY_USER_NAME og KEY_MOETE_ID
 
-    static int DATABASE_VERSION = 1;
-    static String DATABASE_NAME = "MøteDatabase";
+
+    static int DATABASE_VERSION = 5;
+    static String DATABASE_NAME = "MoeteDatabase";
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,11 +46,13 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         createTableKontakter(db);
         createTableMøter(db);
+        createTableMøteDeltagelse(db);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOETEDELTAGELSE); //Må droppe "child-tables" først
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_KONTAKTER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOETER);
         onCreate(db);
@@ -79,7 +83,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-
     //Sletter data - slutt
 
 
@@ -105,12 +108,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //Returnerer data
 
-    public Cursor getKontakter() {
+    /* public Cursor getKontakter() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT brukernavn FROM " + TABLE_KONTAKTER;
         Cursor data = db.rawQuery(query,null);
         return data;
-    }
+    } */
 
     public List<Kontakt> hentAlle(String TABLE) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -159,7 +162,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     public void createTableMøteDeltagelse(SQLiteDatabase db) {
-
+        String LAG_TABLE_MOETEDELTAGELSE = "CREATE TABLE " + TABLE_MOETEDELTAGELSE
+                + "(" + KEY_KONTAKT_ID + " INTEGER NOT NULL,"
+                + KEY_MOETE_ID + " INTEGER NOT NULL" + ")";
+        Log.d("SQL", LAG_TABLE_MOETEDELTAGELSE);
+        db.execSQL(LAG_TABLE_MOETEDELTAGELSE);
     }
 
     //Tabeller slutt
