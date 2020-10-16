@@ -33,11 +33,11 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_MOETE_ID = "Moete_ID";
     static String KEY_DATO = "dato";
     static String KEY_TID = "tid";
-    //Oversikt over kontakter i møte
 
-    //Møtedeltagelse
+
+    //Møtedeltagelse - vil gi oversikten over hvilke kontakter som er med på møte.
     static String TABLE_MOETEDELTAGELSE = "Moetedeltagelse";
-    //Skal ha KEY_USER_NAME og KEY_MOETE_ID
+
 
 
     static int DATABASE_VERSION = 6;
