@@ -30,7 +30,7 @@ public class NyKontaktActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kontakter);
         navnInn = (EditText) findViewById(R.id.text_navn);
-        telefonInn = (EditText)findViewById(R.id.text_tlf);
+        telefonInn = (EditText)findViewById(R.id.text_telefonnummer);
         brukernavnInn = (EditText)findViewById(R.id.text_brukernavn);
         /*lv = (ListView) findViewById(R.id.kontakterList);
         //lv = (ListView) findViewById(R.id.kontakterList);

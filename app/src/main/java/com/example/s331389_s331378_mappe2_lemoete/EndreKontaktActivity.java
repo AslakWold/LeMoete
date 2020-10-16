@@ -22,7 +22,7 @@ public class EndreKontaktActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endrekontakt);
         navnInn = (EditText) findViewById(R.id.text_navn);
-        telefonInn = (EditText)findViewById(R.id.text_tlf);
+        telefonInn = (EditText)findViewById(R.id.text_telefonnummer);
         brukernavnInn = (EditText)findViewById(R.id.text_brukernavn);
         brukernavnInn.setEnabled(false);
 

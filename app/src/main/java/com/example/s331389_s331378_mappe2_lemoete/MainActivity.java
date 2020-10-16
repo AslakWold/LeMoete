@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
     public void leggTilMote(View v){
-
+        Intent i = new Intent(this, NyMoteActivity.class);
+        startActivity(i);
     }
 }

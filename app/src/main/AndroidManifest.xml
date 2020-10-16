@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".NyKontaktActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".EndreKontaktActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NyMoteActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

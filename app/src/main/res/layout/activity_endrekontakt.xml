@@ -78,21 +78,21 @@
         android:hint="@string/navn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_tlf"
+        app:layout_constraintBottom_toTopOf="@id/text_telefonnummer"
         app:layout_constraintTop_toBottomOf="@+id/text_brukernavn" />
 
     <ImageView
         android:id="@+id/navn_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/text_tlf"
+        app:layout_constraintBottom_toTopOf="@+id/text_telefonnummer"
         app:layout_constraintEnd_toStartOf="@+id/text_navn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_brukernavn"
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <EditText
-        android:id="@+id/text_tlf"
+        android:id="@+id/text_telefonnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -108,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_tlf"
+        app:layout_constraintEnd_toStartOf="@+id/text_telefonnummer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_navn"
         app:srcCompat="@drawable/ic_baseline_phone_24" />
