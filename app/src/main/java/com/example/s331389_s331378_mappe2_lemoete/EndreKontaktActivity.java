@@ -34,6 +34,7 @@ public class EndreKontaktActivity extends AppCompatActivity {
     //Buttons
 
     public void btnEndre(View v){
+        db = new DBHandler(this);
         Kontakt kontakt = new Kontakt();
         if(!navnInn.getText().toString().isEmpty()
                 && !telefonInn.getText().toString().isEmpty()) {

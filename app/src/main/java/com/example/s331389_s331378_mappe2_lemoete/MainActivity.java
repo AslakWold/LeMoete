@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public DBHandler db;
     FloatingActionButton leggTilKnapp;
+    FloatingActionButton leggTilMote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         leggTilKnapp = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        leggTilMote = (FloatingActionButton) findViewById(R.id.leggTilMote);
+
 
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -81,5 +84,8 @@ public class MainActivity extends AppCompatActivity {
     public void startKontakter(View v){
         Intent i = new Intent(this, NyKontaktActivity.class);
         startActivity(i);
+    }
+    public void leggTilMote(View v){
+
     }
 }

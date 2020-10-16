@@ -15,7 +15,7 @@
     </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/leggTilMote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -25,7 +25,8 @@
         app:backgroundTint="#ECE8E8"
         app:layout_constraintBottom_toBottomOf="@+id/liste_møter"
         app:layout_constraintEnd_toEndOf="@+id/liste_møter"
-        app:srcCompat="@drawable/ic_baseline_add_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_add_circle_24"
+        android:onClick="leggTilMote"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

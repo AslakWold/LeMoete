@@ -69,4 +69,10 @@ public class Møte {
     public void setMoete_ID(int moete_ID) {
         this.moete_ID = moete_ID;
     }
+
+    public String toString(){
+        String ut = "ID : " + moete_ID + "\nType : " + type + "\nSted : " + sted + "\nDato : " + dato
+        + "Tid : " + tid;
+        return ut;
+    }
 }
