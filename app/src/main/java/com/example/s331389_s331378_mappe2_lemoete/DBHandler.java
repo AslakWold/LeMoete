@@ -76,7 +76,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void leggTilMote(Møte møte){
+    public Møte leggTilMote(Møte møte){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_STED, møte.getSted());
@@ -84,9 +84,25 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(KEY_TID, String.valueOf(møte.getTid()));
         values.put(KEY_DATO, String.valueOf(møte.getDato()));
         result = db.insert(TABLE_MOETER, null, values);
+
+        Møte nyttMøte = new Møte();
+
+        String selectQue = "SELECT * FROM " + TABLE_MOETER;
+        Cursor cursor = db.rawQuery(selectQue, null);
+        cursor.moveToLast();
+
+        nyttMøte.setMoete_ID(cursor.getInt(0));
+        nyttMøte.setType(cursor.getString(1));
+        nyttMøte.setSted(cursor.getString(2));
+        try{
+            nyttMøte.setDato(StringToDate(cursor.getString(3)));
+        }catch(Exception e){
+            throw new IllegalArgumentException();
+        }
+        nyttMøte.setTid(Time.valueOf(cursor.getString(4)));
         db.close();
 
-
+        return nyttMøte;
 
     }
 
