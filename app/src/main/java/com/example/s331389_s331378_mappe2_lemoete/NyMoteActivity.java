@@ -33,6 +33,7 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
         datoInn = (EditText) findViewById(R.id.text_dato);
         datoInn.setEnabled(false);
         tidInn = (EditText) findViewById(R.id.text_tid);
+        tidInn.setEnabled(false);
 
     }
 
