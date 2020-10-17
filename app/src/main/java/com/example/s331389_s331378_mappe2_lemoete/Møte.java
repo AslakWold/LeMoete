@@ -1,6 +1,7 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
 import java.sql.Time;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Møte {
