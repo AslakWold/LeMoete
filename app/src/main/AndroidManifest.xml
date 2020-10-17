@@ -20,6 +20,8 @@
         <activity android:name=".EndreKontaktActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".NyMoteActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".KontaktTilMoeteActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".VisDeltagereActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".EndreMoeteActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
 

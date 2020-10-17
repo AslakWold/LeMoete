@@ -126,12 +126,25 @@ public class DBHandler extends SQLiteOpenHelper {
                 new String[] {brukernavn});
         db.close();
     }
-    public void slettMote(Long id){
+    public void slettMote(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         result = db.delete(TABLE_MOETER, KEY_MOETE_ID + " =? ",
                 new String[] {String.valueOf(id)});
         db.close();
     }
+    public void slettDeltagelse(int moete_id, long kontakt_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        result = db.delete(TABLE_MOETEDELTAGELSE, KEY_MOETE_ID + " =? AND " + KEY_KONTAKT_ID + " =? ",
+                new String[]{String.valueOf(moete_id), String.valueOf(kontakt_id)});
+        db.close();
+    }
+    public void slettMoeteDeltagelser(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        result = db.delete(TABLE_MOETEDELTAGELSE, KEY_MOETE_ID + " =? ",
+                new String[] {String.valueOf(id)});
+        db.close();
+    }
+
 
     //Sletter data - slutt
 
@@ -230,31 +243,23 @@ public class DBHandler extends SQLiteOpenHelper {
         ArrayList<Kontakt> deltagere = new ArrayList<>();
         ArrayList<Long> kontaktId = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectQue = "SELECT * FROM " + TABLE_MOETEDELTAGELSE + " WHERE " + KEY_MOETE_ID + " = " +moete_id;
+        String selectQue = "SELECT * FROM " + TABLE_KONTAKTER + " WHERE " + KEY_KONTAKT_ID + " IN(SELECT " + KEY_KONTAKT_ID +
+                " FROM " + TABLE_MOETEDELTAGELSE + " WHERE " + KEY_MOETE_ID + " = " + moete_id + ")"  ;
         Cursor cursor = db.rawQuery(selectQue, null);
-
-        if(cursor.moveToFirst()){
-            kontaktId.add(cursor.getLong(0));
-        }     while(cursor.moveToNext());
-        cursor.close();
-            selectQue = "SELECT * FROM " + TABLE_KONTAKTER ;
-            cursor = db.rawQuery(selectQue,null);
-
-            for(long id : kontaktId){
                 if (cursor.moveToFirst()) {
                     do {
-                        if(cursor.getLong(0)==id){
+
                             Kontakt kontakt = new Kontakt();
                             kontakt.set_ID(cursor.getLong(0));
                             kontakt.setBrukernavn(cursor.getString(1));
                             kontakt.setNavn(cursor.getString(2));
                             kontakt.setTelefon(cursor.getString(3));
                             deltagere.add(kontakt);
-                        }
+
                 } while (cursor.moveToNext()) ;
                 cursor.close();
             }
-            }
+
         return deltagere;
 
     }

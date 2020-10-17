@@ -44,7 +44,7 @@ public class EndreKontaktActivity extends AppCompatActivity {
             kontakt.set_ID(getIntent().getExtras().getLong("ID"));
 
             db.oppdaterKontakt(kontakt);
-            super.onBackPressed();
+            finish();
         } else {
             toastMelding("Du må fylle inn verdier i alle feltene");
         }

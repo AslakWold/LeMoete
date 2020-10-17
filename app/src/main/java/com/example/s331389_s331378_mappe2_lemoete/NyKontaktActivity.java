@@ -48,7 +48,7 @@ public class NyKontaktActivity extends AppCompatActivity {
                     telefonInn.getText().toString());
 
             db.leggTilKontakt(nyKontakt);
-            super.onBackPressed();
+            finish();
         } else {
             toastMelding("Du må fylle inn verdier i alle feltene");
         }
