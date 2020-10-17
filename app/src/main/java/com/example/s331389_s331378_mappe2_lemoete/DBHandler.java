@@ -237,13 +237,24 @@ public class DBHandler extends SQLiteOpenHelper {
             kontaktId.add(cursor.getLong(0));
         }     while(cursor.moveToNext());
         cursor.close();
-        for(long id : kontaktId){
-            selectQue = "SELECT * FROM " + TABLE_KONTAKTER;
-        }
+            selectQue = "SELECT * FROM " + TABLE_KONTAKTER ;
+            cursor = db.rawQuery(selectQue,null);
 
-
-
-
+            for(long id : kontaktId){
+                if (cursor.moveToFirst()) {
+                    do {
+                        if(cursor.getLong(0)==id){
+                            Kontakt kontakt = new Kontakt();
+                            kontakt.set_ID(cursor.getLong(0));
+                            kontakt.setBrukernavn(cursor.getString(1));
+                            kontakt.setNavn(cursor.getString(2));
+                            kontakt.setTelefon(cursor.getString(3));
+                            deltagere.add(kontakt);
+                        }
+                } while (cursor.moveToNext()) ;
+                cursor.close();
+            }
+            }
         return deltagere;
 
     }

@@ -18,6 +18,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
     List<Kontakt> kontakter;
     List<String> kontaktString;
     Kontakt clickedKontakt;
+    List<Kontakt> lagtTil;
     ListView lv;
     int id_moete;
     long id_kontakt;
@@ -35,11 +36,23 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 clickedKontakt = kontakter.get(i);
-                id_kontakt = clickedKontakt.get_ID();
-                db.leggTilDeltagelse(id_moete,id_kontakt);
+                lagtTil.add(clickedKontakt);
+                //id_kontakt = clickedKontakt.get_ID();
+                //db.leggTilDeltagelse(id_moete,id_kontakt);
                 fjernFraList(i);
             }
         });
+    }
+
+    public void btnLeggTil(View v){
+        for(Kontakt kontakt : lagtTil){
+            id_kontakt = kontakt.get_ID();
+            db.leggTilDeltagelse(id_moete,id_kontakt);
+        }
+        onBackPressed();
+    }
+    public void btnClear(View v){
+        onBackPressed();
     }
 
 
