@@ -95,15 +95,24 @@ public class DBHandler extends SQLiteOpenHelper {
         nyttMøte.setType(cursor.getString(1));
         nyttMøte.setSted(cursor.getString(2));
         try{
-            nyttMøte.setDato(StringToDate(cursor.getString(3)));
+            nyttMøte.setDato(cursor.getString(3));
         }catch(Exception e){
             throw new IllegalArgumentException();
         }
-        nyttMøte.setTid(Time.valueOf(cursor.getString(4)));
+        nyttMøte.setTid(cursor.getString(4));
         db.close();
 
         return nyttMøte;
 
+    }
+
+    public void leggTilDeltagelse(int moete_id, long kontakt_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_KONTAKT_ID,String.valueOf(kontakt_id));
+        values.put(KEY_MOETE_ID,String.valueOf(moete_id));
+        result = db.insert(TABLE_MOETEDELTAGELSE,null,values);
+        db.close();
     }
 
 
@@ -204,11 +213,11 @@ public class DBHandler extends SQLiteOpenHelper {
                 møte.setType(cursor.getString(1));
                 møte.setSted(cursor.getString(2));
                 try{
-                    møte.setDato(StringToDate(cursor.getString(3)));
+                    møte.setDato(cursor.getString(3));
                 }catch(Exception e){
                     throw new IllegalArgumentException();
                 }
-                møte.setTid(Time.valueOf(cursor.getString(4)));
+                møte.setTid(cursor.getString(4));
                 moteList.add(møte);
             } while(cursor.moveToNext()) ;
             cursor.close();
@@ -217,10 +226,26 @@ public class DBHandler extends SQLiteOpenHelper {
         return moteList;
     }
 
+    public ArrayList<Kontakt> finnDeltagere(int moete_id){
+        ArrayList<Kontakt> deltagere = new ArrayList<>();
+        ArrayList<Long> kontaktId = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQue = "SELECT * FROM " + TABLE_MOETEDELTAGELSE + " WHERE " + KEY_MOETE_ID + " = " +moete_id;
+        Cursor cursor = db.rawQuery(selectQue, null);
 
-    public Date StringToDate(String dato) throws ParseException {
-        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dato);
-        return date;
+        if(cursor.moveToFirst()){
+            kontaktId.add(cursor.getLong(0));
+        }     while(cursor.moveToNext());
+        cursor.close();
+        for(long id : kontaktId){
+            selectQue = "SELECT * FROM " + TABLE_KONTAKTER;
+        }
+
+
+
+
+        return deltagere;
+
     }
 
 

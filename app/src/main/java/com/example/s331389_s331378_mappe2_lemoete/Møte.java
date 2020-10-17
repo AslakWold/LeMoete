@@ -5,8 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Møte {
-    Date dato;
-    Time tid;
+    String dato;
+    String tid;
     String sted;
     String type;
     int moete_ID;
@@ -16,7 +16,7 @@ public class Møte {
 
     }
 
-    public Møte(Date dato, Time tid, String sted, String type, int moete_ID) {
+    public Møte(String dato, String tid, String sted, String type, int moete_ID) {
         this.dato = dato;
         this.sted = sted;
         this.type = type;
@@ -24,26 +24,26 @@ public class Møte {
         this.moete_ID = moete_ID;
     }
 
-    public Møte(Date dato, Time tid, String sted, String type){
+    public Møte(String dato, String tid, String sted, String type){
         this.dato = dato;
         this.sted= sted;
         this.type = type;
         this.tid = tid;
     }
 
-    public Time getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(Time tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 
-    public Date getDato() {
+    public String getDato() {
         return dato;
     }
 
-    public void setDato(Date dato) {
+    public void setDato(String dato) {
         this.dato = dato;
     }
 
@@ -73,7 +73,7 @@ public class Møte {
 
     public String toString(){
         String ut = "ID : " + moete_ID + "\nType : " + type + "\nSted : " + sted + "\nDato : " + dato
-        + "Tid : " + tid;
+        + "\nTid : " + tid;
         return ut;
     }
 }

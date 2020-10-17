@@ -1,24 +1,23 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class NyMoteActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class NyMoteActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     EditText typeInn;
     EditText stedInn;
     EditText datoInn;
@@ -46,23 +45,22 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
             Møte nyttmøte = new Møte();
             nyttmøte.setType(typeInn.getText().toString());
             nyttmøte.setSted(stedInn.getText().toString());
-            try {
-                Date dato = StringToDate(datoInn.getText().toString());
-                nyttmøte.setDato(dato);
-            } catch (ParseException e) {
-                toastMelding("Dato må skrives på formen dd/MM/yyyy");
-            }
-            nyttmøte.setTid(Time.valueOf(tidInn.getText().toString()));
-
+            nyttmøte.setDato(datoInn.getText().toString());
+            nyttmøte.setTid(tidInn.getText().toString());
 
             //Får tilbake møtet med id for å kunne bruke den i til å lage møtedeltagelse
 
             Møte passMøte = db.leggTilMote(nyttmøte);
+            System.out.println(passMøte.toString());
 
+            Intent i = new Intent(this, KontaktTilMoeteActivity.class);
+            i.putExtra("moete_id",passMøte.getMoete_ID());
+            startActivity(i);
         }else{
             toastMelding("Du må fylle inn verdier i alle feltene");
         }
     }
+
 
     public void btnClear(View v){
         onBackPressed();
@@ -72,6 +70,11 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.show(getSupportFragmentManager(), "date picker");
     }
+    public void btnTimeDialog(View view) {
+        TimePickerFragment timePicker = new TimePickerFragment();
+        timePicker.show(getSupportFragmentManager(), "time picker");
+    }
+
 
     //Buttons - slutt
 
@@ -94,5 +97,16 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
         String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
 
         datoInn.setText(currentDateString);
+    }
+
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hours, int minutt) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY,hours);
+        c.set(Calendar.MINUTE,minutt);
+        String currentTimeString = c.get(Calendar.HOUR_OF_DAY) + ":" +c.get(Calendar.MINUTE);
+
+        tidInn.setText(currentTimeString);
     }
 }

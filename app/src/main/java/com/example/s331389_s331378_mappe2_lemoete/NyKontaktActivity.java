@@ -38,7 +38,6 @@ public class NyKontaktActivity extends AppCompatActivity {
     }
 
     //Buttons
-    //Legge til kode fra forelesning her
     public void btnLeggTil(View v){
 
         if(!brukernavnInn.getText().toString().isEmpty()
