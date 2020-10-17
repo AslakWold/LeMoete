@@ -118,7 +118,18 @@
         app:layout_constraintTop_toBottomOf="@+id/text_sted" />
 
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/tid_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:onClick="btnTimeDialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_tid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_dato"
+        app:srcCompat="@drawable/ic_baseline_access_time_24" />
+    <!-- <ImageView
         android:id="@+id/tid_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -126,18 +137,19 @@
         app:layout_constraintEnd_toStartOf="@+id/text_tid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_dato"
-        app:srcCompat="@drawable/ic_baseline_access_time_24" />
+        app:srcCompat="@drawable/ic_baseline_access_time_24" /> -->
 
     <EditText
         android:id="@+id/text_tid"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
         android:ems="10"
-        android:inputType="time"
         android:hint="@string/Tid"
+        android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tid_icon"
         app:layout_constraintTop_toBottomOf="@+id/text_dato" />
 
 
