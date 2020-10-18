@@ -43,6 +43,12 @@ public class VisDeltagereActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        listDeltagere();
+        super.onResume();
+    }
+
     public void btnBack(View v) {
         onBackPressed();
     }

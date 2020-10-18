@@ -33,8 +33,8 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kontakttilmoete);
         lv = findViewById(R.id.kontaker_kontaktmote);
         lagtTil = new ArrayList<>();
-        listKontakter();
         id_moete = getIntent().getExtras().getInt("moete_id");
+        listKontakter();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,6 +84,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
             for(Kontakt kontakt1 : kontakter){
                 if(kontakt.getBrukernavn().equals(kontakt1.getBrukernavn())){
                     kontakter.remove(kontakt1);
+                    break;
                 }
             }
         }
