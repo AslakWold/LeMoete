@@ -19,10 +19,12 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton leggTilKnapp;
     FloatingActionButton leggTilMote;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         leggTilKnapp = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         leggTilMote = (FloatingActionButton) findViewById(R.id.leggTilMote);
@@ -44,19 +46,22 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.møteoversikt:
                             selectedFragment = new MøterFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frame_container, selectedFragment).commit();
                             break;
                         case R.id.kontakter:
                             selectedFragment = new KontakterFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frame_container, selectedFragment).commit();
                             break;
                         case R.id.instillinger:
-                            /*selectedFragment = new InnstillingerFragment();
-                            break; */
+                            //SettingsFragment selectedFragmentInnstillinger = new SettingsFragment();
                             Intent intent = new Intent(getApplicationContext(), SetPreferencesActivity.class);
                             startActivity(intent);
+                            //getFragmentManager().beginTransaction()
+                              //      .replace(R.id.frame_container, selectedFragmentInnstillinger).commit();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_container, selectedFragment).commit();
                     return true;
                 }
             };
