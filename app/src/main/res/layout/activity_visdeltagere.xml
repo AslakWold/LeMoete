@@ -48,20 +48,6 @@
         app:layout_constraintTop_toTopOf="@+id/moter_toolbar"
         app:srcCompat="@drawable/ic_baseline_done_24" />-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:onClick="btnKontaktEditor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:backgroundTint="#ECE8E8"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_person_add_24" />
-
     <ListView
         android:id="@+id/listDeltagere"
         android:layout_width="match_parent"
@@ -70,6 +56,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/moter_toolbar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/legg_til_deltagere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="btnLeggTilDeltagere"
+        app:backgroundTint="#ECE8E8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_add_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
