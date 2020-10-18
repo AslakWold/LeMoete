@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-
+                    Fragment selectedFragment = new MøterFragment();
                     switch (item.getItemId()) {
                         case R.id.møteoversikt:
                             selectedFragment = new MøterFragment();
@@ -50,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new KontakterFragment();
                             break;
                         case R.id.instillinger:
-                            selectedFragment = new InnstillingerFragment();
+                            /*selectedFragment = new InnstillingerFragment();
+                            break; */
+                            Intent intent = new Intent(getApplicationContext(), SetPreferencesActivity.class);
+                            startActivity(intent);
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
-                            selectedFragment).commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_container, selectedFragment).commit();
                     return true;
                 }
             };

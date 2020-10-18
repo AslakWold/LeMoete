@@ -38,6 +38,13 @@
     <string name="deltagere">Deltagere</string>
 
 
+    <!-- Preferences / Innstillinger -->
+    <string name="sms_tjenester">SMS-Tjenester</string>
+    <string name="påminnelse">Påminnelse på SMS</string>
+    <string name="tidspunkt">Tidspunkt for SMS</string>
+
+
+
 
 
 
