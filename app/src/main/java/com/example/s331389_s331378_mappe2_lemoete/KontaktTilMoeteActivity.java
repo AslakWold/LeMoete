@@ -60,6 +60,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
     }
 
 
+
     public void fjernFraList(int pos){
         kontakter.remove(pos);
         kontaktString = new ArrayList<>();

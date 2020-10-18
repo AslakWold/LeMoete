@@ -38,6 +38,10 @@ public class VisDeltagereActivity extends AppCompatActivity {
 
     }
 
+    public void btnBack(View v) {
+        onBackPressed();
+    }
+
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         //super.onCreateContextMenu(menu, v, menuInfo);
