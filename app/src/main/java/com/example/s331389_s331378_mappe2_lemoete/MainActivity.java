@@ -6,11 +6,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.view.View;
 
@@ -20,14 +24,22 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     public DBHandler db;
     FloatingActionButton leggTilKnapp;
     FloatingActionButton leggTilMote;
+    String tidspunkt;
+    String melding;
+
+
+    //SettingsFragment
+    EditText innMelding;
+    TextView tidInn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
         leggTilMote = (FloatingActionButton) findViewById(R.id.leggTilMote);
 
 
+
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
                 new MøterFragment()).commit();
+        //startSettingsfragment();
         getPermission();
     }
 
@@ -74,10 +88,13 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.instillinger:
                             //SettingsFragment selectedFragmentInnstillinger = new SettingsFragment();
-                            Intent intent = new Intent(getApplicationContext(), SetPreferencesActivity.class);
-                            startActivity(intent);
+                            //Intent intent = new Intent(getApplicationContext(), SetPreferencesActivity.class);
+                            //startActivity(intent);
                             //getFragmentManager().beginTransaction()
                               //      .replace(R.id.frame_container, selectedFragmentInnstillinger).commit();
+                            selectedFragment = new SettingsFragment();
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frame_container, selectedFragment).commit();
                             break;
                     }
                     return true;
@@ -123,4 +140,27 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 0);
         }
     }
+
+    public void savetidspunkt(){
+        getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .edit()
+                .putString("tidspunkt",tidspunkt)
+                .apply();
+    }
+    public void gettidspunkt(){
+        tidspunkt  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .getString("tidspunkt","7:0");
+    }
+    public void saveMelding(){
+        getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .edit()
+                .putString("melding",melding)
+                .apply();
+    }
+    public void getMelding(){
+        melding  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .getString("melding","Husk møte idag");
+    }
+
+
 }

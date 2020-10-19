@@ -1,22 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:visibility="visible">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- android:background="@android:color/holo_blue_light"> -->
 
 
-    <!--
-        <ListView
-            android:id="@+id/liste_innstillinger"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" -->
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="68dp"
+        android:text="Skru av på periodiske meldinger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/tid_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+
+        android:onClick="btnVelgTid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:srcCompat="@drawable/ic_baseline_access_time_24" />
+
+    <TextView
+        android:id="@+id/txtTid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="10dp"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/tid_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Velg tid for periodisk melding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/tid_icon" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:text="Velg melding for periodisk melding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tid_icon" />
+
+    <Button
+        android:onClick="btnLagreTid"
+        android:id="@+id/lagreTid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Lagre"
+        app:layout_constraintStart_toStartOf="@+id/txtTid"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:onClick="btnLagreTekst"
+        android:id="@+id/lagreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="53dp"
+        android:text="Lagre"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/lagreTid" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white"
+  tools:visibility="visible">
+
+
+
+      <ListView
+          android:id="@+id/liste_innstillinger"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+           app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
     <fragment
         android:id="@+id/fragment_preferences"
         android:name="com.example.s331389_s331378_mappe2_lemoete.SettingsFragment"
@@ -28,4 +153,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>-->

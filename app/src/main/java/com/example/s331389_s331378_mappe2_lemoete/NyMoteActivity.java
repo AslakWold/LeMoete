@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class NyMoteActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class NyMoteActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener  {
     EditText typeInn;
     EditText stedInn;
     EditText datoInn;

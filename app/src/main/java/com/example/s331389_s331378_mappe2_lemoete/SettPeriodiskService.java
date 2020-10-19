@@ -12,6 +12,7 @@ import java.util.Calendar;
 
 
 public class SettPeriodiskService extends Service {
+    String tidspunkt;
 
     @Nullable
     @Override
@@ -23,10 +24,12 @@ public class SettPeriodiskService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         //Bruker alarmManager til å sende ut tiden til gitt klokkeslett.
+
+        getTidspunkt();
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
-        c.set(Calendar.HOUR_OF_DAY,0);
-        c.set(Calendar.MINUTE,11);
+        c.set(Calendar.HOUR_OF_DAY,getTime(tidspunkt));
+        c.set(Calendar.MINUTE,getMinutt(tidspunkt));
         c.set(Calendar.SECOND,5);
         Intent i = new Intent(this, MinService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0,i, 0);
@@ -36,4 +39,19 @@ public class SettPeriodiskService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    public void getTidspunkt(){
+        tidspunkt  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .getString("tidspunkt","7:0");
+    }
+
+
+    //Hjelpemetoder for å finne time og minutter det skal sendes på
+    public int getTime(String tidspunkt){
+        String [] arr = tidspunkt.split(":",2);
+        return Integer.parseInt(arr[0]);
+    }
+    public int getMinutt(String tidspunkt){
+        String [] arr = tidspunkt.split(":",2);
+        return Integer.parseInt(arr[1]);
+    }
 }

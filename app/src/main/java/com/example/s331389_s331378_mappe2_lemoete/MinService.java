@@ -24,6 +24,7 @@ import java.util.List;
 
 public class MinService extends Service {
 
+    String melding;
 
     @Nullable
     @Override
@@ -33,25 +34,33 @@ public class MinService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        DBHandler db = new DBHandler(this);
 
         Toast.makeText(getApplicationContext(), "I MinService" , Toast.LENGTH_SHORT).show();
 
-        //Lager notifikasjon
-        NotificationManager notMan = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Intent i = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,0);
-        Notification not = new NotificationCompat.Builder(this)
-                .setContentTitle(("tittel"))
-                .setContentText("text")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pendingIntent).build();
-        not.flags |= Notification.FLAG_AUTO_CANCEL;
-        notMan.notify(0, not);
-        sendMeldinger();
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        c.set(Calendar.HOUR_OF_DAY,0);
+        c.set(Calendar.MINUTE,3);
+        c.set(Calendar.SECOND,2);
+        Format format = new SimpleDateFormat("MM/dd/yy");
+        String date = format.format(new Date());
 
-
-
+        if(!db.hentMoeterIdag(date).isEmpty()){
+            //Lager notifikasjon
+            getMelding();
+            NotificationManager notMan = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            Intent i = new Intent(this, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,0);
+            Notification not = new NotificationCompat.Builder(this)
+                    .setContentTitle(("Le Moete"))
+                    .setContentText(melding)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentIntent(pendingIntent).build();
+            not.flags |= Notification.FLAG_AUTO_CANCEL;
+            notMan.notify(0, not);
+            sendMeldinger();
+        }
         return super.onStartCommand(intent, flags, startId);
     }
     //Metode som finner ut hvilke kontakter som har møte idag og sender ut melding
@@ -61,6 +70,8 @@ public class MinService extends Service {
         int MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         int MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
+
+
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
         c.set(Calendar.HOUR_OF_DAY,0);
@@ -69,7 +80,6 @@ public class MinService extends Service {
         Format format = new SimpleDateFormat("MM/dd/yy");
         String date = format.format(new Date());
         List<Møte> moeterIdag = db.hentMoeterIdag(date);
-        System.out.println(moeterIdag.size() + "ANTALL MØTER IDAG");
         List<Kontakt> konakter = new ArrayList<>();
         List<String> telefonnummere = new ArrayList<>();
 
@@ -101,11 +111,15 @@ public class MinService extends Service {
                 MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED) {
             for (String nr : telefonnummere) {
                 SmsManager sms = SmsManager.getDefault();
-
-                sms.sendTextMessage(nr, null, "Du har møte idag testyMCTESTY", null, pendingIntent);
+                sms.sendTextMessage(nr, null, melding, null, pendingIntent);
             }
         }else{
             //ActivityCompat.requestPermissions(, new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 0);
         }
     }
+    public void getMelding(){
+        melding  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
+                .getString("melding","Husk møte idag 2");
+    }
+
 }
