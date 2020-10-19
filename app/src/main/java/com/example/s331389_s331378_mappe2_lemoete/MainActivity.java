@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity{
     FloatingActionButton leggTilMote;
     String tidspunkt;
     String melding;
+    boolean periodisk;
 
 
     //SettingsFragment
@@ -45,9 +46,11 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getPeriodisk();
+        if(periodisk){
+            startService();
+        }
 
-
-        startService();
         leggTilKnapp = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         leggTilMote = (FloatingActionButton) findViewById(R.id.leggTilMote);
 
@@ -161,6 +164,11 @@ public class MainActivity extends AppCompatActivity{
         melding  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
                 .getString("melding","Husk møte idag");
     }
+
+    public void getPeriodisk(){
+        periodisk = getSharedPreferences("PREFERENCE",MODE_PRIVATE).getBoolean("periodisk",true);
+    }
+
 
 
 }

@@ -55,7 +55,7 @@ public class MinService extends Service {
             Notification not = new NotificationCompat.Builder(this)
                     .setContentTitle(("Le Moete"))
                     .setContentText(melding)
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.lemoetelogo)
                     .setContentIntent(pendingIntent).build();
             not.flags |= Notification.FLAG_AUTO_CANCEL;
             notMan.notify(0, not);
@@ -119,7 +119,7 @@ public class MinService extends Service {
     }
     public void getMelding(){
         melding  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
-                .getString("melding","Husk møte idag 2");
+                .getString("melding","Husk møte idag 4");
     }
 
 }

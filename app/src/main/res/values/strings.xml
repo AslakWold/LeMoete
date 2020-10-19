@@ -42,6 +42,10 @@
     <string name="sms_tjenester">SMS-Tjenester</string>
     <string name="påminnelse">Påminnelse på SMS</string>
     <string name="tidspunkt">Tidspunkt for SMS</string>
+    <string name="velgMelding">Velg melding for \nperiodisk tjeneste</string>
+    <string name="lagre">Lagre melding</string>
+
+
 
 
 
