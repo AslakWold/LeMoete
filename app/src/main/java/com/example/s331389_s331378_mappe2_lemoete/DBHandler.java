@@ -264,6 +264,34 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<Møte> hentMoeterIdag(String dato){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Møte> moteList = new ArrayList<Møte>();
+        String selectQue = "SELECT * FROM " + TABLE_MOETER;
+        Cursor cursor = db.rawQuery(selectQue, null);
+
+        if(cursor.moveToFirst()){
+            do {
+                if(cursor.getString(3 ).equals(dato)){
+                    Møte møte = new Møte();
+                    møte.setMoete_ID(cursor.getInt(0));
+                    møte.setType(cursor.getString(1));
+                    møte.setSted(cursor.getString(2));
+                    try{
+                        møte.setDato(cursor.getString(3));
+                    }catch(Exception e){
+                        throw new IllegalArgumentException();
+                    }
+                    møte.setTid(cursor.getString(4));
+                    moteList.add(møte);
+                }
+            } while(cursor.moveToNext()) ;
+            cursor.close();
+            db.close();
+        }
+        return moteList;
+    }
+
 
 
     //Returnerer data - slutt

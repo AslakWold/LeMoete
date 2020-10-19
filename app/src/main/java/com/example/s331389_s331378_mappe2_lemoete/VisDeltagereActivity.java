@@ -56,10 +56,9 @@ public class VisDeltagereActivity extends AppCompatActivity {
     public void btnLeggTilDeltagere(View v) {
         Intent intent = new Intent(this, KontaktTilMoeteActivity.class);
         intent.putExtra("moete_id", moete_id);
+        System.out.println("I VIS DELTAGERE : " + moete_id);
         startActivity(intent);
     }
-
-
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {

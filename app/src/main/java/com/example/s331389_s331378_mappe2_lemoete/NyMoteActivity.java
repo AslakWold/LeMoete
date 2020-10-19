@@ -38,6 +38,7 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
 
     //Buttons
 
+    //Legger til møte i databser
     public void btnLeggTil(View v){
         db = new DBHandler(this);
         if(!typeInn.getText().toString().isEmpty() && !tidInn.getText().toString().isEmpty() &&
@@ -67,6 +68,8 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
         onBackPressed();
     }
 
+
+    //Metoder for dato og tid
     public void btnDatoDialog(View v) {
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.show(getSupportFragmentManager(), "date picker");
@@ -79,15 +82,7 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
 
     //Buttons - slutt
 
-    //konverterer inputString til dato
-    public Date StringToDate(String dato) throws ParseException {
-        Date date = DateFormat.getDateInstance(DateFormat.SHORT).parse(dato);
-        return date;
-    }
 
-    public void toastMelding(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
@@ -110,5 +105,11 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
 
 
         tidInn.setText(currentTimeString);
+    }
+    //Slutt metoder dato og tid
+
+
+    public void toastMelding(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

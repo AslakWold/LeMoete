@@ -1,17 +1,13 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
-import java.sql.Time;
-import java.util.Calendar;
-import java.util.Date;
-
 public class Møte {
     String dato;
     String tid;
     String sted;
     String type;
     int moete_ID;
-    //Tror kanskje vi må ha dato og tid fordi mange funksjoner er gått ut på dato.
 
+    //Kontruktører
     public Møte() {
 
     }
@@ -31,6 +27,8 @@ public class Møte {
         this.tid = tid;
     }
 
+
+    //Getters og setters
     public String getTid() {
         return tid;
     }
@@ -70,6 +68,7 @@ public class Møte {
     public void setMoete_ID(int moete_ID) {
         this.moete_ID = moete_ID;
     }
+
 
     public String toString(){
         String ut = "ID : " + moete_ID + "\nType : " + type + "\nSted : " + sted + "\nDato : " + dato

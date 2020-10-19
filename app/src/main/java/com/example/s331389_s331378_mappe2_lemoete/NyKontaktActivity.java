@@ -20,8 +20,6 @@ public class NyKontaktActivity extends AppCompatActivity {
     EditText brukernavnInn;
 
     public DBHandler db= new DBHandler(this);
-    ListView lv;
-    List<String> kontaktListe = new ArrayList<>();
 
 
 
@@ -32,14 +30,12 @@ public class NyKontaktActivity extends AppCompatActivity {
         navnInn = (EditText) findViewById(R.id.text_navn);
         telefonInn = (EditText)findViewById(R.id.text_telefonnummer);
         brukernavnInn = (EditText)findViewById(R.id.text_brukernavn);
-        /*lv = (ListView) findViewById(R.id.kontakterList);
-        //lv = (ListView) findViewById(R.id.kontakterList);
-        ListKontakter(); */
     }
 
     //Buttons
-    public void btnLeggTil(View v){
 
+    //Legger til Kontakt til databsen
+    public void btnLeggTil(View v){
         if(!brukernavnInn.getText().toString().isEmpty()
         && !navnInn.getText().toString().isEmpty()
         && !telefonInn.getText().toString().isEmpty()) {
@@ -53,6 +49,7 @@ public class NyKontaktActivity extends AppCompatActivity {
             toastMelding("Du må fylle inn verdier i alle feltene");
         }
     }
+
     public void btnEndre(View v){
         Kontakt kontakt = new Kontakt();
         kontakt.setNavn(navnInn.getText().toString());
@@ -62,11 +59,6 @@ public class NyKontaktActivity extends AppCompatActivity {
         recreate();
 
     }
-    /*public void btnSlett(View v){
-        String brukernavn = brukernavnInn.getText().toString();
-        db.slettKontakt(brukernavn);
-        recreate();
-    }*/
 
     public void btnClear(View v) {
         onBackPressed();

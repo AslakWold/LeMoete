@@ -39,6 +39,8 @@ public class EndreMoeteActivity extends AppCompatActivity implements DatePickerD
         startup();
 
     }
+
+    //Setter info fra valgt møte veed start av activity
     public void startup(){
         tidInn.setText(getIntent().getExtras().getString("TID"));
         stedInn.setText(getIntent().getExtras().getString("STED"));
@@ -46,6 +48,7 @@ public class EndreMoeteActivity extends AppCompatActivity implements DatePickerD
         typeInn.setText(getIntent().getExtras().getString("TYPE"));
     }
 
+    //Oppdaterer møte
     public void btnLeggTil(View v){
         db = new DBHandler(this);
         if(!typeInn.getText().toString().isEmpty() && !tidInn.getText().toString().isEmpty() &&
@@ -86,6 +89,8 @@ public class EndreMoeteActivity extends AppCompatActivity implements DatePickerD
     }
 
 
+
+    //Metoder for dato og tid
     public void btnDatoDialog(View v) {
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.show(getSupportFragmentManager(), "date picker");
@@ -94,11 +99,6 @@ public class EndreMoeteActivity extends AppCompatActivity implements DatePickerD
         TimePickerFragment timePicker = new TimePickerFragment();
         timePicker.show(getSupportFragmentManager(), "time picker");
     }
-
-    public void toastMelding(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
@@ -111,7 +111,6 @@ public class EndreMoeteActivity extends AppCompatActivity implements DatePickerD
         datoInn.setText(currentDateString);
     }
 
-
     @Override
     public void onTimeSet(TimePicker timePicker, int hours, int minutt) {
         Calendar c = Calendar.getInstance();
@@ -121,5 +120,8 @@ public class EndreMoeteActivity extends AppCompatActivity implements DatePickerD
 
 
         tidInn.setText(currentTimeString);
+    }
+    public void toastMelding(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

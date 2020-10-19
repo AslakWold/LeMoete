@@ -42,6 +42,8 @@ public class KontakterFragment extends Fragment {
         super.onResume();
     }
 
+
+    //Lister kontakter
     public void ListKontakter(){
         db = new DBHandler(getContext());
         kontakter = db.hentAlle("Kontakter");
@@ -56,6 +58,8 @@ public class KontakterFragment extends Fragment {
         lv.setAdapter(adapter);
     }
 
+
+    //Lager context menu ved langt klikk
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         //super.onCreateContextMenu(menu, v, menuInfo);
@@ -90,10 +94,13 @@ public class KontakterFragment extends Fragment {
         return true;
     }
 
+    //Sletter kontakt ved valgt slett
     public void onSlettClicked(){
         db.slettKontakt(clickedKontakt.brukernavn);
         onResume();
     }
+
+    //Åpner endrekontaktactivity ved valgt endre og sender med informasjon med intent
     public void onEndreClicked(){
         Intent i = new Intent(getActivity(),EndreKontaktActivity.class);
         i.putExtra("BRUKERNAVN", clickedKontakt.getBrukernavn());

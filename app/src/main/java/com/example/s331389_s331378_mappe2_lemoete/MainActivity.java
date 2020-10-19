@@ -2,10 +2,14 @@ package com.example.s331389_s331378_mappe2_lemoete;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.widget.Toast;
 import android.view.View;
@@ -13,12 +17,17 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     public DBHandler db;
     FloatingActionButton leggTilKnapp;
     FloatingActionButton leggTilMote;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        startService();
         leggTilKnapp = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         leggTilMote = (FloatingActionButton) findViewById(R.id.leggTilMote);
 
@@ -35,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
                 new MøterFragment()).commit();
+        getPermission();
+    }
+
+    //Metode som starter melding/notifikasjon service
+    public void startService(){
+        Intent i = new Intent();
+        i.setAction("mittbroadacast");
+        sendBroadcast(i);
     }
 
 
@@ -84,10 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Buttonsmetoder som starter nye aktiviteter
-    public void startMøteOversikt(View view) {
-    }
-    public void startOpprettMøte(View v){
-    }
+
     public void startKontakter(View v){
         Intent i = new Intent(this, NyKontaktActivity.class);
         startActivity(i);
@@ -95,5 +110,17 @@ public class MainActivity extends AppCompatActivity {
     public void leggTilMote(View v){
         Intent i = new Intent(this, NyMoteActivity.class);
         startActivity(i);
+    }
+
+
+    //Spør om tillatelse til å sende melding dersom det ikke allerede er gitt.
+    public void getPermission(){
+        int MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        int MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        if(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_GRANTED &&
+                MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED) {
+        }else{
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 0);
+        }
     }
 }

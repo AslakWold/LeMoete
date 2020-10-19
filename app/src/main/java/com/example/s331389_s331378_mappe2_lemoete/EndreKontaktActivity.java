@@ -26,6 +26,7 @@ public class EndreKontaktActivity extends AppCompatActivity {
         brukernavnInn = (EditText)findViewById(R.id.text_brukernavn);
         brukernavnInn.setEnabled(false);
 
+        //Setter info fra valgt kontakt
         brukernavnInn.setText(getIntent().getExtras().getString("BRUKERNAVN"));
         navnInn.setText(getIntent().getExtras().getString("NAVN"));
         telefonInn.setText(getIntent().getExtras().getString("TELEFON"));
@@ -33,6 +34,7 @@ public class EndreKontaktActivity extends AppCompatActivity {
 
     //Buttons
 
+    //Oppdaterer kontakt
     public void btnEndre(View v){
         db = new DBHandler(this);
         Kontakt kontakt = new Kontakt();

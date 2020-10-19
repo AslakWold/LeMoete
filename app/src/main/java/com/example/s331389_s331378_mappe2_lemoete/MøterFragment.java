@@ -36,6 +36,7 @@ public class MøterFragment extends Fragment {
         registerForContextMenu(lv);
         listmoter();
 
+        //Metode som åpner klikka møte i listviewen ved OnitemClick
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -54,6 +55,8 @@ public class MøterFragment extends Fragment {
         super.onResume();
     }
 
+
+    //Metode som lister møter i listviewet
     public void listmoter(){
         moter = db.hentAlleMoter();
         møterString = new ArrayList<>();
@@ -69,6 +72,8 @@ public class MøterFragment extends Fragment {
     }
 
 
+
+    //Åpner contextmenu ved å holde inn på et element i listviewet
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         //super.onCreateContextMenu(menu, v, menuInfo);
@@ -88,6 +93,7 @@ public class MøterFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo ACMI = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        //Får valgt element
         switch (item.getItemId()){
             case 0:
                 onSlettClicked();
@@ -97,11 +103,12 @@ public class MøterFragment extends Fragment {
                 break;
             default:
                 break;
-
         }
         return true;
     }
 
+
+    //Metode som starter opp EndreActivity og sender med nødvending info til møter
     public void onEndreClicked(){
         Intent i = new Intent(getActivity(), EndreMoeteActivity.class);
         i.putExtra("ID", clickedMøte.getMoete_ID());
@@ -111,6 +118,8 @@ public class MøterFragment extends Fragment {
         i.putExtra("STED", clickedMøte.getSted());
         startActivity(i);
     }
+
+    //Sletter valgt møte
     public void onSlettClicked(){
         db.slettMoeteDeltagelser(clickedMøte.getMoete_ID());
         db.slettMote(clickedMøte.getMoete_ID());

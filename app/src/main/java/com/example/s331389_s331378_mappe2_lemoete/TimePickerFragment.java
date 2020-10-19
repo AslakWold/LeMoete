@@ -15,11 +15,13 @@ public class TimePickerFragment extends DialogFragment {
 
     @NonNull
     @Override
+
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Calendar c = Calendar.getInstance();
         int time = c.get(Calendar.HOUR_OF_DAY);
         int minutt = c.get(Calendar.MINUTE);
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),(TimePickerDialog.OnTimeSetListener) getActivity(), time,minutt,true);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                (TimePickerDialog.OnTimeSetListener) getActivity(), time,minutt,true);
 
         return timePickerDialog;
     }

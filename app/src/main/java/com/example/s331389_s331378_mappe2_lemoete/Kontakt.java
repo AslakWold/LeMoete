@@ -7,10 +7,8 @@ public class Kontakt {
     String navn;
     String telefon;
 
-    public Kontakt() {
-    }
-
-
+    //kontruktører
+    public Kontakt() { }
     public Kontakt(String brukernavn, String navn, String telefon) {
         this.brukernavn = brukernavn;
         this.navn = navn;
@@ -23,6 +21,9 @@ public class Kontakt {
         this.navn = navn;
         this.telefon = telefon;
     }
+    //kontruktører slutt
+
+    //getters og setters
 
     public long get_ID() {
         return _ID;
@@ -55,6 +56,8 @@ public class Kontakt {
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
+
+    //getters og setters slutt
 
     public String toString(){
         String ut= "Navn : " + navn + "\nBrukernavn : " + brukernavn + "\nTelefon : " + telefon +
