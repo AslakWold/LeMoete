@@ -10,22 +10,25 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class Provider extends ContentProvider {
-    static String TABLE_KONTAKTER = "Kontakter";
-    static String KEY_KONTAKT_ID = "Kontakt_ID";
-    public final static String PROVIDER = "com.example.kontakter";
-    private static final int KONTAKT = 1;
-    private static final int MKONTAKT = 2;
-    public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER + "/kontakt");
+public class MoeteProvider extends ContentProvider {
+    static String TABLE_MOETER = "Moeter";
+    static String KEY_MOETE_ID = "Moete_ID";
+    public final static String PROVIDER = "com.example.moeter";
+    private static final int MOETE = 1;
+    private static final int MMOETE = 2;
+    public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER + "/moete");
     private static final UriMatcher uriMatcher;
     DBHandler dbHelper;
     SQLiteDatabase db;
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(PROVIDER, "kontakt", MKONTAKT);
-        uriMatcher.addURI(PROVIDER, "kontakt/#",KONTAKT);
+        uriMatcher.addURI(PROVIDER, "moete", MMOETE);
+        uriMatcher.addURI(PROVIDER, "moete/#", MOETE);
     }
+
+
+
 
     @Override
     public boolean onCreate() {
@@ -38,11 +41,11 @@ public class Provider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
         Cursor cursor = null;
-        if(uriMatcher.match(uri)==KONTAKT){
-            cursor = db.query(TABLE_KONTAKTER, strings, KEY_KONTAKT_ID + " = " + uri.getPathSegments().get(1),
+        if(uriMatcher.match(uri)== MOETE){
+            cursor = db.query(TABLE_MOETER, strings, KEY_MOETE_ID + " = " + uri.getPathSegments().get(1),
                     strings1, null, null, s1);
         }else{
-            cursor = db.query(TABLE_KONTAKTER,null,null,null,null,null,null);
+            cursor = db.query(TABLE_MOETER,null,null,null,null,null,null);
         }
         return cursor;
     }
@@ -51,10 +54,10 @@ public class Provider extends ContentProvider {
     @Override
     public String getType(@NonNull Uri uri) {
         switch (uriMatcher.match(uri)){
-            case MKONTAKT:
-                return "vnd.android.cursor.dir/vnd.example.kontakt";
-            case KONTAKT:
-                return "vnd.android.cursor.item/vnd.example.kontakt";
+            case MMOETE:
+                return "vnd.android.cursor.dir/vnd.example.moete";
+            case MOETE:
+                return "vnd.android.cursor.item/vnd.example.moete";
             default:
                 throw new IllegalArgumentException("Ugyldig URI : " + uri);
         }
@@ -64,10 +67,10 @@ public class Provider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
         SQLiteDatabase DB = dbHelper.getWritableDatabase();
-        db.insert(TABLE_KONTAKTER, null, contentValues);
-        Cursor cursor = db.query(TABLE_KONTAKTER, null,null,null,null,null,null);
+        db.insert(TABLE_MOETER, null, contentValues);
+        Cursor cursor = db.query(TABLE_MOETER, null,null,null,null,null,null);
         cursor.moveToLast();
-        long id = cursor.getLong(0);
+        int id = cursor.getInt(0);
         getContext().getContentResolver().notifyChange(uri,null);
         return null;
     }
@@ -75,13 +78,13 @@ public class Provider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
 
-        if(uriMatcher.match(uri)==KONTAKT){
-            db.delete(TABLE_KONTAKTER, KEY_KONTAKT_ID +  " = " + uri.getPathSegments().get(1), strings);
+        if(uriMatcher.match(uri)== MOETE){
+            db.delete(TABLE_MOETER, KEY_MOETE_ID +  " = " + uri.getPathSegments().get(1), strings);
             getContext().getContentResolver().notifyChange(uri, null);
             return 1;
         }
-        if(uriMatcher.match(uri) == MKONTAKT){
-            db.delete(TABLE_KONTAKTER, null,null);
+        if(uriMatcher.match(uri) == MMOETE){
+            db.delete(TABLE_MOETER, null,null);
             getContext().getContentResolver().notifyChange(uri, null);
             return 2;
         }
@@ -91,16 +94,17 @@ public class Provider extends ContentProvider {
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
 
-        if(uriMatcher.match(uri)==KONTAKT){
-            db.update(TABLE_KONTAKTER,contentValues, KEY_KONTAKT_ID +  " = " + uri.getPathSegments().get(1), null);
+        if(uriMatcher.match(uri)== MOETE){
+            db.update(TABLE_MOETER,contentValues, KEY_MOETE_ID +  " = " + uri.getPathSegments().get(1), null);
             getContext().getContentResolver().notifyChange(uri, null);
             return 1;
         }
-        if(uriMatcher.match(uri) == MKONTAKT){
-            db.update(TABLE_KONTAKTER, null,null, null);
+        if(uriMatcher.match(uri) == MMOETE){
+            db.update(TABLE_MOETER, null,null, null);
             getContext().getContentResolver().notifyChange(uri, null);
             return 2;
         }
         return 0;
     }
+
 }

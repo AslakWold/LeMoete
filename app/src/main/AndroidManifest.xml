@@ -41,8 +41,24 @@
 
 
         <provider
-            android:authorities="com.example.s331389_s331378_mappe2_lemoete"
+            android:authorities="com.example.kontakter"
             android:name="com.example.s331389_s331378_mappe2_lemoete.Provider"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.permission"
+            android:writePermission="com.example.permission"
+            />
+        <provider
+            android:authorities="com.example.moeter"
+            android:name="com.example.s331389_s331378_mappe2_lemoete.MoeteProvider"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.permission"
+            android:writePermission="com.example.permission"
+            />
+        <provider
+            android:authorities="com.example.moetedeltagelser"
+            android:name="com.example.s331389_s331378_mappe2_lemoete.DeltagelseProvider"
             android:enabled="true"
             android:exported="true"
             android:readPermission="com.example.permission"
