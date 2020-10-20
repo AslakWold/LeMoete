@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.Manifest;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity{
     String tidspunkt;
     String melding;
     boolean periodisk;
+    Fragment selectedFragment;
 
 
     //SettingsFragment
@@ -54,16 +57,17 @@ public class MainActivity extends AppCompatActivity{
         leggTilKnapp = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         leggTilMote = (FloatingActionButton) findViewById(R.id.leggTilMote);
 
-
-
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
                 new MøterFragment()).commit();
+
         //startSettingsfragment();
         getPermission();
     }
+
+
 
     //Metode som starter melding/notifikasjon service
     public void startService(){
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity{
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = new MøterFragment();
+                    selectedFragment = new MøterFragment();
                     switch (item.getItemId()) {
                         case R.id.møteoversikt:
                             selectedFragment = new MøterFragment();
@@ -90,11 +94,6 @@ public class MainActivity extends AppCompatActivity{
                                     .replace(R.id.frame_container, selectedFragment).commit();
                             break;
                         case R.id.instillinger:
-                            //SettingsFragment selectedFragmentInnstillinger = new SettingsFragment();
-                            //Intent intent = new Intent(getApplicationContext(), SetPreferencesActivity.class);
-                            //startActivity(intent);
-                            //getFragmentManager().beginTransaction()
-                              //      .replace(R.id.frame_container, selectedFragmentInnstillinger).commit();
                             selectedFragment = new SettingsFragment();
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.frame_container, selectedFragment).commit();
