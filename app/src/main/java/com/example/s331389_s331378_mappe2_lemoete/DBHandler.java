@@ -239,6 +239,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return moteList;
     }
 
+    //Finner alle deltagere som hører til møte
     public ArrayList<Kontakt> finnDeltagere(int moete_id){
         ArrayList<Kontakt> deltagere = new ArrayList<>();
         ArrayList<Long> kontaktId = new ArrayList<>();

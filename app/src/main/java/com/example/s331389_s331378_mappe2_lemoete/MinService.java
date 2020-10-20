@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.IBinder;
 import android.telephony.SmsManager;
 import android.widget.Toast;
@@ -50,11 +51,14 @@ public class MinService extends Service {
             //Lager notifikasjon
             getMelding();
             NotificationManager notMan = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(Intent.ACTION_VIEW); //Sender til sms applikasjonen ved trykk på notifikasjon
+            //i.addCategory(Intent.CATEGORY_DEFAULT);
+            //i.setType("vnd.android-dir/mms-sms");
+            i.setData(Uri.parse("sms:"));
             PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,0);
             Notification not = new NotificationCompat.Builder(this)
                     .setContentTitle(("Le Moete"))
-                    .setContentText(melding)
+                    .setContentText(melding + "\n" + getResources().getString(R.string.notMeldingExtra))
                     .setSmallIcon(R.mipmap.lemoetelogo)
                     .setContentIntent(pendingIntent).build();
             not.flags |= Notification.FLAG_AUTO_CANCEL;

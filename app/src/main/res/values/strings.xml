@@ -47,6 +47,9 @@
     <string name="velgMelding">Velg melding for \nperiodisk tjeneste</string>
     <string name="lagre">Lagre melding</string>
 
+    <!--Melding-->
+    <string name="notMeldingExtra">Sendes til kontakter med møte idag</string>
+
 
 
 
