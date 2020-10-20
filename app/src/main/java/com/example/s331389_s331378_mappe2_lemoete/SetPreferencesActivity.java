@@ -1,16 +1,30 @@
 package com.example.s331389_s331378_mappe2_lemoete;
 
+import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.TimePicker;
 
-public class SetPreferencesActivity extends PreferenceActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import java.util.Calendar;
+
+public class SetPreferencesActivity extends AppCompatActivity  {
+
+    SharedPreferences sp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         super.onCreate(savedInstanceState);
         PrefsFragment prefsFragment = new PrefsFragment();
@@ -18,15 +32,33 @@ public class SetPreferencesActivity extends PreferenceActivity {
 
     }//onCreate ends
 
+    public void btnTimeDialog(View view) {
+        TimePickerFragment timePicker = new TimePickerFragment();
+        timePicker.show(getSupportFragmentManager(), "time picker");
+    }
 
-    public static class PrefsFragment extends PreferenceFragment {
+    /*public void onTimeSet(TimePicker timePicker, int hours, int minutt) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY,hours);
+        c.set(Calendar.MINUTE,minutt);
+        String currentTimeString =c.get(Calendar.HOUR_OF_DAY) + ":" +c.get(Calendar.MINUTE);
+
+
+        .setText(currentTimeString);
+    } */
+
+
+    public static class PrefsFragment extends PreferenceFragment  implements TimePickerDialog.OnTimeSetListener {
         private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-
+        EditTextPreference editTextPreference;
+        Fragment fm;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+            editTextPreference = (EditTextPreference) findPreference("tid_velg");
+            fm = new Fragment();
 
             //Lytter etter endringer av valg i Preferencelistene
             preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -36,6 +68,21 @@ public class SetPreferencesActivity extends PreferenceActivity {
                 }
             };
 
+        }
+
+        /*public void btnTimeDialog(View view) {
+            TimePickerFragment timePicker = new TimePickerFragment();
+            timePicker.show(getFragmentManager(), "time picker");
+        } */
+
+        public void onTimeSet(TimePicker timePicker, int hours, int minutt) {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.HOUR_OF_DAY,hours);
+            c.set(Calendar.MINUTE,minutt);
+            String currentTimeString =c.get(Calendar.HOUR_OF_DAY) + ":" +c.get(Calendar.MINUTE);
+
+            editTextPreference.setText(currentTimeString);
+            //.setText(currentTimeString);
         }
 
         //registrer og uregistrerer endringene

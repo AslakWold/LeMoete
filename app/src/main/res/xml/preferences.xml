@@ -7,9 +7,9 @@
             android:defaultValue="true"
             android:key="switch_preference_1"
             android:title="@string/påminnelse" />
+
         <EditTextPreference
-            android:defaultValue="Default value"
-            android:key="edit_text_preference_1"
+            android:key="tid_velg"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="@string/tidspunkt" />

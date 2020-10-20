@@ -40,7 +40,7 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
     EditText etxtMelding;
     boolean sendPeriodic;
     String melding;
-    Button lagreMelding;
+    ImageButton lagreMelding;
 
     @Nullable
     @Override
@@ -54,7 +54,7 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
         etxtMelding.setText(melding);
         tidInn.setText(tidspunkt);
         imageButtonTid = (ImageButton)v.findViewById(R.id.tid_icon);
-        lagreMelding = (Button) v.findViewById(R.id.lagreText);
+        lagreMelding = (ImageButton) v.findViewById(R.id.lagreText);
         startPeriodisk = (Switch)v.findViewById(R.id.onOffSwitch);
         startPeriodisk.setChecked(sendPeriodic);
         sendPeriodic = startPeriodisk.isChecked();

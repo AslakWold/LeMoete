@@ -7,7 +7,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/moter_toolbar"
-        app:title="@string/nytt_møte"
+        app:title="@string/endre_møte"
         app:titleMarginStart="60dp"
         app:titleTextColor="@color/colorPrimary"
         android:layout_width="match_parent"

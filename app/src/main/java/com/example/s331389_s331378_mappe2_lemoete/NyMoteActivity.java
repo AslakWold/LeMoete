@@ -2,6 +2,7 @@ package com.example.s331389_s331378_mappe2_lemoete;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import java.text.DateFormat;
@@ -107,6 +109,20 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
         tidInn.setText(currentTimeString);
     }
     //Slutt metoder dato og tid
+
+    public void onBackPressed() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Avslutt?")
+                .setMessage("Endringene lagres ikke.")
+                .setPositiveButton(R.string.avslutt, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        NyMoteActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton(R.string.ikke_avslutt, null)
+                .show();
+    }
 
 
     public void toastMelding(String msg) {

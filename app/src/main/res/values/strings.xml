@@ -34,6 +34,8 @@
     <string name="Tid">Tid</string>
     <string name="nytt_møte">Nytt møte</string>
     <string name="leggtilkontakter">Legg til kontakter</string>
+    <string name="endre_møte">Endre møte</string>
+    <string name="legg_til_deltagere">Legg til deltagere</string>
 
     <string name="deltagere">Deltagere</string>
 

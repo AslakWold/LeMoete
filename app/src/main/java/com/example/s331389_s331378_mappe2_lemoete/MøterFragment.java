@@ -27,6 +27,7 @@ public class MøterFragment extends Fragment {
     ArrayList<String> møterString;
     List<Møte> moter;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
