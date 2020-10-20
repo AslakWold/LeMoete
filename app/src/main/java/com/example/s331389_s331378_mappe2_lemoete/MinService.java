@@ -102,16 +102,15 @@ public class MinService extends Service {
 
         for(Kontakt kontakt : konakter){
             telefonnummere.add(kontakt.getTelefon());
+            System.out.println(kontakt.toString());
         }
 
         //Sender melding
-        Intent i = new Intent(this, MinService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0,i, 0);
         if(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_GRANTED &&
                 MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED) {
             for (String nr : telefonnummere) {
                 SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage(nr, null, melding, null, pendingIntent);
+                sms.sendTextMessage(nr, null, melding, null, null);
             }
         }else{
             //ActivityCompat.requestPermissions(, new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 0);

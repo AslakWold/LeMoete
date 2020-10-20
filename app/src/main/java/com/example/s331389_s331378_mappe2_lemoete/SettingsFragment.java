@@ -65,8 +65,11 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
                 melding = etxtMelding.getText().toString();
                 System.out.println(melding);
                 saveMelding();
+                stoppService();
+                startService();
             }
         });
+
         startPeriodisk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -28,14 +28,21 @@ public class SettPeriodiskService extends Service {
         getTidspunkt();
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
+        //c.add(Calendar.DAY_OF_YEAR,1);
         c.set(Calendar.HOUR_OF_DAY,getTime(tidspunkt));
         c.set(Calendar.MINUTE,getMinutt(tidspunkt));
         c.set(Calendar.SECOND,0);
         Intent i = new Intent(this, MinService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0,i, 0);
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),60*1000*60*24,pendingIntent);
 
+
+
+        //Hindrer den ved å sende ved startup
+        if(System.currentTimeMillis()+50 > c.getTimeInMillis()){
+            c.add(Calendar.DAY_OF_YEAR,1);
+        }
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
         //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),60*1000*60*24,pendingIntent);
 
         return super.onStartCommand(intent, flags, startId);
