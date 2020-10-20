@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
+
+//Timepickerfragment klasse for å bruke i fragments.
 public class TimePickerFragment2 extends DialogFragment {
     TimePickerDialog.OnTimeSetListener setListener;
     //Fragments need to empty constructor

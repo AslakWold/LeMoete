@@ -43,6 +43,7 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
     //Legger til møte i databser
     public void btnLeggTil(View v){
         db = new DBHandler(this);
+        //Sjekker om alle felt er fylt ut
         if(!typeInn.getText().toString().isEmpty() && !tidInn.getText().toString().isEmpty() &&
         !datoInn.getText().toString().isEmpty() && !stedInn.getText().toString().isEmpty()){
             Møte nyttmøte = new Møte();
@@ -56,6 +57,7 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
             Møte passMøte = db.leggTilMote(nyttmøte);
             System.out.println(passMøte.toString());
 
+            //Starter KontaktTilMoeteActivity for å legge til deltagelser for kontakter
             Intent i = new Intent(this, KontaktTilMoeteActivity.class);
             i.putExtra("moete_id",passMøte.getMoete_ID());
             startActivity(i);
@@ -83,8 +85,6 @@ public class NyMoteActivity extends AppCompatActivity implements DatePickerDialo
 
 
     //Buttons - slutt
-
-
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {

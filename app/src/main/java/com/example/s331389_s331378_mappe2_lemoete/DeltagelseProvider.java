@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DeltagelseProvider extends ContentProvider {
+
+    //Attributter
     static String TABLE_MOETEDELTAGELSE = "Moetedeltagelse";
     static String KEY_MOETE_ID = "Moete_ID";
     public final static String PROVIDER = "com.example.moetedeltagelser";
@@ -21,6 +23,7 @@ public class DeltagelseProvider extends ContentProvider {
     DBHandler dbHelper;
     SQLiteDatabase db;
 
+    //uriMatcher se
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(PROVIDER, "moete", MMOETEDELTAGELSE);

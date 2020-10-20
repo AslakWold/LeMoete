@@ -68,6 +68,7 @@ public class MøterFragment extends Fragment {
             møterString.add(ut);
         }
 
+        //Lister møter i lv-et ved hjelp av adapter
         ListAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, møterString);
         lv.setAdapter(adapter);
     }
@@ -91,6 +92,7 @@ public class MøterFragment extends Fragment {
         }
     }
 
+    //Henter svar fra valgt element i contextmeny
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo ACMI = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();

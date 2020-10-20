@@ -36,6 +36,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
         id_moete = getIntent().getExtras().getInt("moete_id");
         listKontakter();
 
+        //Onclick for listview
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -60,7 +61,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
     }
 
 
-
+    //Fjerner kontakt valgt fra listview
     public void fjernFraList(int pos){
         kontakter.remove(pos);
         kontaktString = new ArrayList<>();
@@ -73,6 +74,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
     }
+    //Metode som lister alle kontakter som ikke allerede er lagt til i møte fa listview.
     public void listKontakter(){
         db = new DBHandler(this);
         kontakter = db.hentAlle("Kontakter");
@@ -98,14 +100,7 @@ public class KontaktTilMoeteActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
     }
 
-    public void hentDeltagere(){
-        db = new DBHandler(this);
-
-        brukteKontakter = db.finnDeltagere(id_moete);
-
-
-    }
-
+    //Husk å endre Strings fra values
     @Override //Lager en alertdialog når vi trykker tilbake fra "Ny kontakt"
     public void onBackPressed() {
         AlertDialog alertDialog = new AlertDialog.Builder(this)

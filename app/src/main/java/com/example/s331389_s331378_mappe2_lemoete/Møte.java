@@ -8,9 +8,7 @@ public class Møte {
     int moete_ID;
 
     //Kontruktører
-    public Møte() {
-
-    }
+    public Møte() {} //Tom
 
     public Møte(String dato, String tid, String sted, String type, int moete_ID) {
         this.dato = dato;

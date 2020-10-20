@@ -21,8 +21,6 @@ public class NyKontaktActivity extends AppCompatActivity {
 
     public DBHandler db= new DBHandler(this);
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,8 +8,6 @@ import android.widget.Toast;
 public class MinBroadCastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context,"I BROADCASTRECEIVER", Toast.LENGTH_SHORT).show();
-
         //starter periodisk melding/notifikasjon
        Intent i = new Intent(context, SettPeriodiskService.class);
        context.startService(i);

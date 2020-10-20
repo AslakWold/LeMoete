@@ -53,6 +53,8 @@ public class VisDeltagereActivity extends AppCompatActivity {
         onBackPressed();
     }
 
+
+    //Starter activity for å legge til flere deltagere
     public void btnLeggTilDeltagere(View v) {
         Intent intent = new Intent(this, KontaktTilMoeteActivity.class);
         intent.putExtra("moete_id", moete_id);
@@ -60,6 +62,8 @@ public class VisDeltagereActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    //Oppretter contextmeny ved langt klikk
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         //super.onCreateContextMenu(menu, v, menuInfo);
@@ -76,6 +80,8 @@ public class VisDeltagereActivity extends AppCompatActivity {
         }
     }
 
+    //Finner  valgt element i contextmenyen
+        //Her bare ett valgt , men ingenting gjøres dersom det trykkes ut
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo ACMI = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -89,11 +95,14 @@ public class VisDeltagereActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    //Sletter møtedeltagelse for valgt kontakt
     public void onSlettClicked(){
         db.slettDeltagelse(moete_id,clickedKontakt.get_ID());
         listDeltagere();
     }
 
+    //Lister alle deltagere til møte
     public void listDeltagere(){
         //db = new DBHandler(this);
         deltagere = db.finnDeltagere(moete_id);
@@ -103,6 +112,7 @@ public class VisDeltagereActivity extends AppCompatActivity {
             stringDeltagere.add(kontakt.toString());
         }
 
+        //Fyller listview ved hjelp av Arrayadapter
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringDeltagere);
         lv.setAdapter(adapter);
     }

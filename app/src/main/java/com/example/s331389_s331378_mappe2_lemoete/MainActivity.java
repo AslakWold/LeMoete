@@ -6,7 +6,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -50,7 +52,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getPeriodisk();
-        if(periodisk){
+
+        //Sjekker om det skal startes en am ved start dersom det ikke er noen og det er skrudd på
+        AlarmManager am = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        if(periodisk && am!=null){
             startService();
         }
 
@@ -143,6 +148,8 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+
+    //Shared preferences metoder
     public void savetidspunkt(){
         getSharedPreferences("PREFERENCE",MODE_PRIVATE)
                 .edit()

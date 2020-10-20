@@ -120,15 +120,20 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //Sletter data
 
-    public void slettKontakt(String brukernavn) {
+    public void slettKontakt(String brukernavn,long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         result = db.delete(TABLE_KONTAKTER, KEY_USER_NAME + " =? ",
                 new String[] {brukernavn});
+        db.delete(TABLE_KONTAKTER, KEY_KONTAKT_ID + " =? ",
+                new String[] {String.valueOf(id)});
+
         db.close();
     }
     public void slettMote(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         result = db.delete(TABLE_MOETER, KEY_MOETE_ID + " =? ",
+                new String[] {String.valueOf(id)});
+        db.delete(TABLE_MOETEDELTAGELSE, KEY_MOETE_ID + " =? ",
                 new String[] {String.valueOf(id)});
         db.close();
     }

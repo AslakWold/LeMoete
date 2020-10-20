@@ -54,12 +54,13 @@ public class KontakterFragment extends Fragment {
             kontaktString.add(ut);
         }
 
+        //Fyller listview ved hjelp av Adapter
         ListAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, kontaktString);
         lv.setAdapter(adapter);
     }
 
 
-    //Lager context menu ved langt klikk
+    //Lager context menu ved langt klikk på listview
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         //super.onCreateContextMenu(menu, v, menuInfo);
@@ -77,6 +78,7 @@ public class KontakterFragment extends Fragment {
         }
     }
 
+    //Sjekker valgt element i contextmeny
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo ACMI = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -96,7 +98,7 @@ public class KontakterFragment extends Fragment {
 
     //Sletter kontakt ved valgt slett
     public void onSlettClicked(){
-        db.slettKontakt(clickedKontakt.brukernavn);
+        db.slettKontakt(clickedKontakt.brukernavn,clickedKontakt.get_ID());
         onResume();
     }
 

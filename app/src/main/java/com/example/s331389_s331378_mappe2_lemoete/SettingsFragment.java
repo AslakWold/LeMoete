@@ -46,9 +46,12 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_innstillinger, container, false);
+        //Henter inn tidpunkt, Melding og om det skal sendes fra Sharedpreferences
         getTidspunkt();
         getMelding();
         getPeriodisk();
+
+        //Initialiserer og setter informasjon i felter
         tidInn = (TextView) v.findViewById(R.id.txtTid);
         etxtMelding = (EditText) v.findViewById(R.id.eTextMelding);
         etxtMelding.setText(melding);
@@ -60,8 +63,7 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
         sendPeriodic = startPeriodisk.isChecked();
 
 
-
-
+        //Onclick metoder som brukes siden det er fragment
         lagreMelding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +100,7 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
     //Metoder for settingsfragment
 
 
+    //Metode for å velge tid for alarm
     public void VelgTid() {
         TimePickerFragment2 timePicker = new TimePickerFragment2(this);
         timePicker.show(getFragmentManager(), "time picker");
@@ -117,24 +120,15 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
             startService();
         }
     }
-    public void savetidspunkt(){
-        SharedPreferences preferences =this.getActivity().getSharedPreferences("PREFERENCE",MODE_PRIVATE);
-                preferences.edit()
-                .putString("tidspunkt",tidspunkt)
-                .apply();
-    }
-    public void getTidspunkt(){
-        SharedPreferences preferences =this.getActivity().getSharedPreferences("PREFERENCE",MODE_PRIVATE);
-        tidspunkt  = preferences
-                .getString("tidspunkt","7:0");
-    }
-    //Metode som starter melding/notifikasjon service
+    //Slutt metoder for å velge tid
+
+
+    //Metode som starter/stopper melding/notifikasjon service
     public void startService(){
         Intent i = new Intent();
         i.setAction("mittbroadacast");
         getActivity().sendBroadcast(i);
     }
-
     public void stoppService(){
         Intent i = new Intent(getActivity(),MinService.class);
         PendingIntent pi = PendingIntent.getService(getActivity(), 0,i,0);
@@ -146,7 +140,7 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
     }
 
 
-    //SharedPrefe
+    //SharedPreferences metoder
     public void getMelding(){
         SharedPreferences preferences =this.getActivity().getSharedPreferences("PREFERENCE",MODE_PRIVATE);
         melding  = preferences
@@ -168,4 +162,18 @@ public class SettingsFragment extends Fragment implements TimePickerDialog.OnTim
         SharedPreferences preferences = this.getActivity().getSharedPreferences("PREFERENCE",MODE_PRIVATE);
         sendPeriodic = preferences.getBoolean("periodisk",true);
     }
-}
+    public void savetidspunkt(){
+        SharedPreferences preferences =this.getActivity().getSharedPreferences("PREFERENCE",MODE_PRIVATE);
+        preferences.edit()
+                .putString("tidspunkt",tidspunkt)
+                .apply();
+    }
+    public void getTidspunkt(){
+        SharedPreferences preferences =this.getActivity().getSharedPreferences("PREFERENCE",MODE_PRIVATE);
+        tidspunkt  = preferences
+                .getString("tidspunkt","7:0");
+    }
+    //Slutt sharedpreferences metoder.
+
+
+}//Slutt class

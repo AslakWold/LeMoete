@@ -37,17 +37,20 @@ public class SettPeriodiskService extends Service {
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
 
-
         //Hindrer den ved å sende ved startup
+            //+50 for litt slingringsmonn
         if(System.currentTimeMillis()+50 > c.getTimeInMillis()){
             c.add(Calendar.DAY_OF_YEAR,1);
         }
+
+        //Initialisererer alarm
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
         //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),60*1000*60*24,pendingIntent);
 
         return super.onStartCommand(intent, flags, startId);
     }
 
+    //Henter tidspunkt fra sharedpreferences
     public void getTidspunkt(){
         tidspunkt  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
                 .getString("tidspunkt","7:0");
@@ -63,4 +66,4 @@ public class SettPeriodiskService extends Service {
         String [] arr = tidspunkt.split(":",2);
         return Integer.parseInt(arr[1]);
     }
-}
+}//Slutt class

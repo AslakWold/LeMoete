@@ -27,9 +27,6 @@ public class MoeteProvider extends ContentProvider {
         uriMatcher.addURI(PROVIDER, "moete/#", MOETE);
     }
 
-
-
-
     @Override
     public boolean onCreate() {
         dbHelper = new DBHandler(getContext());
