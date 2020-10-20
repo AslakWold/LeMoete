@@ -40,7 +40,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    static int DATABASE_VERSION = 6;
+    static int DATABASE_VERSION = 7;
     static String DATABASE_NAME = "MoeteDatabase";
 
     public DBHandler(Context context) {

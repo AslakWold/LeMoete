@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity{
 
     //SettingsFragment
     EditText innMelding;
-    TextView tidInn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
