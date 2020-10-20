@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.IBinder;
 import android.telephony.SmsManager;
 import android.widget.Toast;
@@ -37,9 +36,10 @@ public class MinService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         DBHandler db = new DBHandler(this);
 
+        Toast.makeText(getApplicationContext(), "I MinService" , Toast.LENGTH_SHORT).show();
+
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
-        //Ingenting å si hvilket klokkeslett her
         c.set(Calendar.HOUR_OF_DAY,0);
         c.set(Calendar.MINUTE,3);
         c.set(Calendar.SECOND,2);
@@ -50,14 +50,11 @@ public class MinService extends Service {
             //Lager notifikasjon
             getMelding();
             NotificationManager notMan = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            Intent i = new Intent(Intent.ACTION_VIEW); //Sender til sms applikasjonen ved trykk på notifikasjon
-            //i.addCategory(Intent.CATEGORY_DEFAULT);
-            //i.setType("vnd.android-dir/mms-sms");
-            i.setData(Uri.parse("sms:")); //Finner sms
+            Intent i = new Intent(this, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,0);
             Notification not = new NotificationCompat.Builder(this)
                     .setContentTitle(("Le Moete"))
-                    .setContentText(melding + "\n" + getResources().getString(R.string.notMeldingExtra))
+                    .setContentText(melding)
                     .setSmallIcon(R.mipmap.lemoetelogo)
                     .setContentIntent(pendingIntent).build();
             not.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -66,18 +63,17 @@ public class MinService extends Service {
         }
         return super.onStartCommand(intent, flags, startId);
     }
-
     //Metode som finner ut hvilke kontakter som har møte idag og sender ut melding
     public void sendMeldinger(){
         DBHandler db  = new DBHandler(this);
 
-        //Henter tillatelser
         int MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         int MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
+
+
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(System.currentTimeMillis());
-        //Ingenting å si hvilket klokkeslett her
         c.set(Calendar.HOUR_OF_DAY,0);
         c.set(Calendar.MINUTE,3);
         c.set(Calendar.SECOND,2);
@@ -104,7 +100,6 @@ public class MinService extends Service {
             }
         }
 
-        //Fyller telefonnummere array.
         for(Kontakt kontakt : konakter){
             telefonnummere.add(kontakt.getTelefon());
             System.out.println(kontakt.toString());
@@ -118,12 +113,9 @@ public class MinService extends Service {
                 sms.sendTextMessage(nr, null, melding, null, null);
             }
         }else{
-
-            //Spør om tillatelse i Mainaactivity sin onCreate Istedenfor.
             //ActivityCompat.requestPermissions(, new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE}, 0);
         }
     }
-    //SHAREDPREFERENCE metode for melding som skal skrives i notifikasjon og melding
     public void getMelding(){
         melding  = getSharedPreferences("PREFERENCE",MODE_PRIVATE)
                 .getString("melding","Husk møte idag 4");
